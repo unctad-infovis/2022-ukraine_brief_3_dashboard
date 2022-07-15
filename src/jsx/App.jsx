@@ -69,7 +69,7 @@ function App() {
         makeVisible(i);
         i++;
       }, 1500);
-    }, 300);
+    }, 1000);
   };
 
   useEffect(() => {
