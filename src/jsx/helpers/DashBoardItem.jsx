@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // https://www.npmjs.com/package/react-countup
 import CountUp from 'react-countup';
 
-import LineChart from './helpers/LineChart.jsx';
+import LineChart from './LineChart.jsx';
 
 function DashBoardItem({
   desc, idx, image, meta, series, title, value, start, unit
@@ -19,7 +19,7 @@ function DashBoardItem({
     <div className={`dashboard_item dashboard_item_${idx}`}>
       <div className="dashboard_circle">
         <div className="dashboard_item_image"><img src={image} alt="" /></div>
-        <div className="dashboard_item_series">{start ? <LineChart series={series} idx={idx} /> : null}</div>
+        <div className="dashboard_item_series">{start ? <LineChart series={series.map(el => el.value)} idx={idx} /> : null}</div>
         <div className="dashboard_item_value">
           <span className="value">
             {(start) ? <CountUp delay={0} easingFn={easingFn} useEasing end={value} start={0} duration={3} /> : null}

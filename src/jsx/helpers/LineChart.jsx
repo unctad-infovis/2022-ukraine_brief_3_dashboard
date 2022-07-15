@@ -9,9 +9,9 @@ function LineChart({ idx, series }) {
 
   const xScale = d3.scaleLinear()
     .range([0, 160])
-    .domain([0, 60]);
+    .domain([0, series.length]);
   const yScale = d3.scaleLinear()
-    .range([30, 0])
+    .range([28, 2])
     .domain([Math.min(...series), Math.max(...series)]);
 
   let current_idx = 0;
@@ -39,7 +39,7 @@ function LineChart({ idx, series }) {
         clearInterval(interval);
       }
       updateLineChart();
-    }, 45);
+    }, 3000 / series.length);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
