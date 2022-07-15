@@ -75,41 +75,41 @@ function App() {
   useEffect(() => {
     if (data !== false) {
       let date;
-      // Bond spread.
-      series_0.current = data.bond_spread.map(el => ({
+      // FAO food price index.
+      series_0.current = data.fao_food_price_index.map(el => ({
         date: el.date,
-        value: el.bond_spread_sovereign
+        value: el.value
       }));
       date = new Date(series_0.current[0].date);
       setMeta_0(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_0(Math.floor(((series_0.current[series_0.current.length - 1].value - series_0.current[0].value) / series_0.current[0].value) * 100));
 
-      // Clarkson.
-      series_1.current = data.clarkson.map(el => ({
+      // Bond spread.
+      series_1.current = data.bond_spread.map(el => ({
         date: el.date,
-        value: el.clarksea_index
+        value: el.bond_spread_sovereign
       }));
       date = new Date(series_1.current[0].date);
       setMeta_1(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_1(Math.floor(((series_1.current[series_1.current.length - 1].value - series_1.current[0].value) / series_1.current[0].value) * 100));
 
-      // Crude oil price.
-      series_2.current = data.crude_oil_price.map(el => ({
+      // Clarkson.
+      series_2.current = data.clarkson.map(el => ({
         date: el.date,
-        value: el.value
+        value: el.clarksea_index
       }));
       date = new Date(series_2.current[0].date);
       setMeta_2(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_2(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
 
-      // FAO food price index.
-      series_3.current = data.fao_food_price_index.map(el => ({
+      // Crude oil price.
+      series_3.current = data.crude_oil_price.map(el => ({
         date: el.date,
         value: el.value
       }));
       date = new Date(series_3.current[0].date);
       setMeta_3(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
-      setValue_3(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
+      setValue_3(Math.floor(((series_3.current[series_3.current.length - 1].value - series_3.current[0].value) / series_3.current[0].value) * 100));
     }
     startAnimation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
