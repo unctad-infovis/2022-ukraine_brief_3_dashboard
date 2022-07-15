@@ -1,6 +1,6 @@
-# 2022-2022-ukraine_brief_3_dashboard
+# 2022-ukraine_brief_3_dashboard
 
-**Live demo** https://unctad-infovis.github.io/2022-2022-ukraine_brief_3_dashboard/
+**Live demo** https://unctad-infovis.github.io/2022-ukraine_brief_3_dashboard/
 
 ## Rights of usage
 

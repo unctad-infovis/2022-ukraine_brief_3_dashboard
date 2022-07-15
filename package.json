@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "sync-gh-pages": "npm run build && git commit -am 'Production build' && git subtree push --prefix public origin gh-pages"
+    "sync-gh-pages": "git subtree push --prefix public origin gh-pages"
   },
   "keywords": [],
   "author": "",
@@ -39,4 +39,8 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
   },
+  "dependencies": {
+    "d3": "^7.6.1",
+    "react-countup": "^6.3.0"
+  }
 }

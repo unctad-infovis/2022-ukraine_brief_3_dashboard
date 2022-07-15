@@ -1,10 +1,132 @@
-// @import url('https://fonts.googleapis.com/css?family=Roboto+Serif:400,700.css');
-// @import url('https://fonts.googleapis.com/css?family=Roboto:400,700.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Serif:600.css');
 
 @import 'colors.less';
 
-#app-root-2022-2022-ukraine_brief_3_dashboard .app {
-  font-family: Roboto;
+#app-root-2022-ukraine_brief_3_dashboard .app {
+  background-color: #E3EDF6;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto auto;
+  max-width: 1350px;
+  padding: 40px 20px;
+  h1 {
+    font-family: "Roboto Serif";
+    margin: auto auto 40px auto;
+    padding: 0;
+    text-align: center;
+  }
+  .dashboard_items {
+    align-content: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    .dashboard_item {
+      flex: 25%;
+      opacity: 0;
+      transition-duration: 0.5s;
+      transition-property: opacity;
+      transition-timing-function: linear;
+      visibility: hidden;
+      width: 280px;
+      .dashboard_circle {
+        background-color: #f1f1f1;
+        border-radius: 50%;
+        border: 10px solid #fff;
+        height: 200px;
+        margin: auto auto 20px auto;
+        width: 200px;
+        .dashboard_item_image {
+          font-size: 0;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          text-align: center;
+          img {
+            height: 80px;
+            width: auto;
+          }
+        }
+        .dashboard_chart {
+          height: 30px;
+          margin: auto auto 10px auto;
+          width: 160px;
+          svg {
+            height: 100%;
+            width: 100%;
+            .line_container {
+              height: 30px;
+              .line {
+                fill: none;
+                stroke-width: 2.5;
+                stroke: #ED1847;
+              }
+            }
+          }
+        }
+        .dashboard_item_value {
+          color: #009edb;
+          font-size: 40px;
+          font-weight: 700;
+          text-align: center;
+          .value {
+            display: inline-block;
+            height: 19;
+            text-align: right; 
+            width: 70px;
+          }
+        }
+      }
+      .dashboard_item_title {
+        color: #009edb;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 0px;
+        text-align: center;
+        text-transform: uppercase;
+      } 
+      .dashboard_item_meta {
+        color: #6E6259;
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 5px;
+        text-align: center;
+      } 
+      .dashboard_item_desc {
+        color: #000;
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 5px;
+        margin: auto auto;
+        max-width: 200px;
+        text-align: center;
+      } 
+    }
+  }
+  .button_container {
+    text-align: center;
+    a {
+      border-radius: 4px;
+      border: 1px solid #009edb;
+      box-sizing: border-box;
+      color: #454545;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.27px;
+      line-height: 1;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      text-align: center;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      width: 200px;
+      &:hover {
+        background-color: #EBEAE6;
+      }
+    }
+  }
 }
 
 @import 'basics.less';
