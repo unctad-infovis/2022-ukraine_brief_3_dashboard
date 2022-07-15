@@ -38,6 +38,10 @@ function App() {
   const [value_1, setValue_1] = useState(0);
   const [value_2, setValue_2] = useState(0);
   const [value_3, setValue_3] = useState(0);
+  const [meta_0, setMeta_0] = useState('');
+  const [meta_1, setMeta_1] = useState('');
+  const [meta_2, setMeta_2] = useState('');
+  const [meta_3, setMeta_3] = useState('');
 
   const makeVisible = (i) => {
     if (i === 1) {
@@ -70,11 +74,14 @@ function App() {
 
   useEffect(() => {
     if (data !== false) {
+      let date;
       // Bond spread.
       series_0.current = data.bond_spread.map(el => ({
         date: el.date,
         value: el.bond_spread_sovereign
       }));
+      date = new Date(series_0.current[0].date);
+      setMeta_0(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_0(Math.floor(((series_0.current[series_0.current.length - 1].value - series_0.current[0].value) / series_0.current[0].value) * 100));
 
       // Clarkson.
@@ -82,6 +89,8 @@ function App() {
         date: el.date,
         value: el.clarksea_index
       }));
+      date = new Date(series_1.current[0].date);
+      setMeta_1(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_1(Math.floor(((series_1.current[series_1.current.length - 1].value - series_1.current[0].value) / series_1.current[0].value) * 100));
 
       // Crude oil price.
@@ -89,6 +98,8 @@ function App() {
         date: el.date,
         value: el.value
       }));
+      date = new Date(series_2.current[0].date);
+      setMeta_2(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_2(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
 
       // FAO food price index.
@@ -96,6 +107,8 @@ function App() {
         date: el.date,
         value: el.value
       }));
+      date = new Date(series_3.current[0].date);
+      setMeta_3(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_3(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
     }
     startAnimation();
@@ -106,10 +119,10 @@ function App() {
     <div className="app">
       <h1>A pulse of the global crisis</h1>
       <div className="dashboard_items">
-        <DashBoardItem desc="Higher value means higher prices of food in supermarkets" idx="0" image={wheat} meta="Since Jan 2020" start={start_0} series={series_0.current} title="FAO Food Index" unit="%" value={value_0} />
-        <DashBoardItem desc="Higher value means less governmental independence" idx="1" image={bill} meta="Since Jan 2020" start={start_1} series={series_1.current} title="Bond Spread Sovereign" unit="%" value={value_1} />
-        <DashBoardItem desc="Higher value means higher prices of imported goods" idx="2" image={boat} meta="Since Jan 2020" start={start_2} series={series_2.current} title="Clarksea Index" unit="%" value={value_2} />
-        <DashBoardItem desc="Higher value means higher gasoline prices" idx="3" image={barrel} meta="Since Jan 2020" start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
+        <DashBoardItem desc="Higher value means higher prices of food in supermarkets" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="FAO Food Index" unit="%" value={value_0} />
+        <DashBoardItem desc="Higher value means less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Bond Spread Sovereign" unit="%" value={value_1} />
+        <DashBoardItem desc="Higher value means higher prices of imported goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Clarksea Index" unit="%" value={value_2} />
+        <DashBoardItem desc="Higher value means higher gasoline prices" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
       </div>
       <div className="button_container">
         <a href="#more">See more</a>

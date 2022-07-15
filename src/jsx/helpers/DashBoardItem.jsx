@@ -28,7 +28,10 @@ function DashBoardItem({
         </div>
       </div>
       <div className="dashboard_item_title">{title}</div>
-      <div className="dashboard_item_meta">{meta}</div>
+      <div className="dashboard_item_meta">
+        Since&nbsp;
+        {meta}
+      </div>
       <div className="dashboard_item_desc">{desc}</div>
     </div>
   );
