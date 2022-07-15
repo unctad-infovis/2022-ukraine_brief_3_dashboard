@@ -119,10 +119,10 @@ function App() {
     <div className="app">
       <h1>Pulse of the global crisis</h1>
       <div className="dashboard_items">
-        <DashBoardItem desc="Higher value means higher prices of food in supermarkets" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="FAO Food Index" unit="%" value={value_0} />
-        <DashBoardItem desc="Higher value means less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Bond Spread Sovereign" unit="%" value={value_1} />
-        <DashBoardItem desc="Higher value means higher prices of imported goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Clarksea Index" unit="%" value={value_2} />
-        <DashBoardItem desc="Higher value means higher gasoline prices" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
+        <DashBoardItem desc="Higher value means higher prices of food" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="FAO Food Index" unit="%" value={value_0} />
+        <DashBoardItem desc="Higher value lead to less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Emerging Market Sovereign Bond Spread" unit="%" value={value_1} />
+        <DashBoardItem desc="Higher transportation costs lead to higher prices of goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Clarksea Index" unit="%" value={value_2} />
+        <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
       </div>
       <div className="button_container">
         <a href="#more">See more</a>

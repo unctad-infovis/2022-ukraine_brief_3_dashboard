@@ -22,6 +22,7 @@ function DashBoardItem({
         <div className="dashboard_item_series">{start ? <LineChart series={series.map(el => el.value)} idx={idx} /> : null}</div>
         <div className="dashboard_item_value">
           <span className="value">
+            {(value > 0) ? '+' : ''}
             {(start) ? <CountUp delay={0} easingFn={easingFn} useEasing end={value} start={0} duration={3} /> : null}
           </span>
           <span className="unit">{unit}</span>
