@@ -68,7 +68,7 @@ function App() {
         }
         makeVisible(i);
         i++;
-      }, 1500);
+      }, 0);
     }, 1000);
   };
 

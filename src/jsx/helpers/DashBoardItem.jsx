@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // https://www.npmjs.com/package/react-countup
-import CountUp from 'react-countup';
+// import CountUp from 'react-countup';
 
 import LineChart from './LineChart.jsx';
 
 function DashBoardItem({
   desc, idx, image, meta, series, title, value, start, unit
 }) {
-  const easingFn = (t, b, c, d) => {
-    const ts = (t /= d) * t;
-    const tc = ts * t;
-    return b + c * (tc + -3 * ts + 3 * t);
-  };
+  // const easingFn = (t, b, c, d) => {
+  //   const ts = (t /= d) * t;
+  //   const tc = ts * t;
+  //   return b + c * (tc + -3 * ts + 3 * t);
+  // };
 
   return (
     <div className={`dashboard_item dashboard_item_${idx}`}>
@@ -23,7 +23,8 @@ function DashBoardItem({
         <div className="dashboard_item_value">
           <span className="value">
             {(value > 0) ? '+' : ''}
-            {(start) ? <CountUp delay={0} easingFn={easingFn} useEasing end={value} start={0} duration={3} /> : null}
+            {/* (start) ? <CountUp delay={0} easingFn={easingFn} useEasing end={value} start={0} duration={3} /> : null */}
+            {(start) ? value : null}
           </span>
           <span className="unit">{unit}</span>
         </div>
