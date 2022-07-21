@@ -7,7 +7,7 @@
   box-sizing: border-box;
   font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: auto auto;
-  padding: 40px 20px;
+  padding: 40px 20px 40px 20px;
   width: 100%;
   h1 {
     font-family: "Roboto Serif";
@@ -20,9 +20,7 @@
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-bottom: 40px;
-    margin: auto auto;
+    margin: auto auto auto auto;
     max-width: 1350px;
     .dashboard_item {
       flex: 0 0 25%;
@@ -112,31 +110,144 @@
       } 
     }
   }
-  .button_container {
-    margin: auto auto;
+  
+  .footnote_container {
     max-width: 1350px;
-    text-align: center;
-    a {
-      border-radius: 4px;
-      border: 1px solid #009edb;
-      box-sizing: border-box;
-      color: #454545;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.27px;
-      line-height: 1;
-      margin-bottom: 10px;
-      padding: 10px 15px;
+    margin: auto auto 40px auto;
+    p {
+      color: #6E6259;
+      font-size: 16px;
+      font-weight: 300;
+      margin-bottom: 5px;
       text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      min-width: 200px;
-      &:hover {
-        background-color: #e6e6e6;
-        border-color: #adadad;
-        color: #333;
+    }
+  }
+  .tabs_container {
+    display: flex;
+    margin: auto auto auto auto;
+    width: 100%;
+    max-width: 800px;
+    justify-content: space-between;
+    .tab_container {
+      button {
+        background-color: #009edb;
+        border-radius: 20px 20px;
+        border: 0;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        font-family: "Roboto Serif";
+        font-size: 0;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        transition-duration: 0.1s;
+        transition-property: border-radius;
+        transition-timing-function: linear;
+        width: 250px;
+        &.not_selected {
+          border-radius: 20px 20px 0 0;
+        }
+        &.selected {
+          border-radius: 20px 20px 0 0;
+          .label.label_food {
+            &:before {
+              background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-food.png");
+            }
+          }
+          .label.label_energy {
+            &:before {
+              background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-energy.png");
+            }
+          }
+          .label.label_finance {
+            &:before {
+              background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-finance.png");
+            }
+          }
+        }
+        .label {
+          &.label_food {
+            &:before {
+              background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-food_w.png");
+            }
+            &:hover {
+              &:before {
+                background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-food.png");
+              }
+            }
+          }
+          &.label_energy {
+            &:before {
+              background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-energy_w.png");
+            }
+            &:hover {
+              &:before {
+                background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-energy.png");
+              }
+            }
+          }
+          &.label_finance {
+            &:before {
+              background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-finance_w.png");
+            }
+            &:hover {
+              &:before {
+                background-image: url("../../../assets/img/icons/Ukraine_brief_3-2022-finance.png");
+              }
+            }
+          }
+          &:before {
+            background-position: 0 50%;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            content: '';
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 56px;
+          }
+          display: inline-block;
+          font-size: 20px;
+          padding-left: 65px;
+          position: relative;
+          vertical-align: middle;
+        }
+        &.selected,
+        &:hover {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  .tabs_content {
+    background-color: #fff;
+    margin: 0 auto auto auto;
+    max-width: 800px;
+    transition-duration: 0.5s;
+    transition-property: opacity;
+    transition-timing-function: linear;
+    .tab_content {
+      align-content: center;
+      box-sizing: border-box;
+      display: none;
+      flex-wrap: wrap;
+      margin: auto auto;
+      max-width: 800px;
+      opacity: 0;
+      .datawrapper_content {
+        box-sizing: border-box;
+        margin: auto auto;
+        padding: 20px;
+        width: 100%;
+        iframe {
+          height: 600px;
+          border: none;
+          min-width: 100% !important;
+          width: 0;
+        }
       }
     }
   }
