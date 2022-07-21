@@ -186,13 +186,13 @@ function App() {
         </div>
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
-            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} growth_values={['+50%']} growth_metas={['Since Jan 2020']} />
+            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} />
             <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[]} />
             <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/4/" growth={[]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Example1', value: '+50%', meta: 'Since Jan 2020' }, { label: 'Example2', value: '+50%', meta: 'Since Jan 2020' }]} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Crude oil', value: '+50%', meta: 'Since Jan 2020' }, { label: 'Natural gas', value: '+50%', meta: 'Since Jan 2020' }]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
