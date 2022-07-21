@@ -34,7 +34,7 @@ function DashBoardItem({
         Since&nbsp;
         {meta}
       </div>
-      <div className="dashboard_item_desc">{desc}</div>
+      <div className="dashboard_item_desc">{desc ? null : null}</div>
     </div>
   );
 }

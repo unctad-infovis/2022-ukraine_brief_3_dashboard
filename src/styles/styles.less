@@ -7,16 +7,17 @@
   box-sizing: border-box;
   font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: auto auto;
-  padding: 40px 20px 40px 20px;
+  padding: 40px 0 40px 0;
   width: 100%;
   .app_content {
     transition-duration: 0.5s;
     transition-property: opacity;
     transition-timing-function: linear;
     h1 {
+      box-sizing: border-box;
       font-family: "Roboto Serif";
       margin: auto auto 40px auto;
-      padding: 0;
+      padding: 0 5px;
       text-align: center;
     }
     .dashboard_items {
@@ -24,8 +25,9 @@
       box-sizing: border-box;
       display: flex;
       flex-wrap: wrap;
-      margin: auto auto auto auto;
+      margin: auto auto 20px auto;
       max-width: 1350px;
+      padding: 0 5px;
       .dashboard_item {
         flex: 0 0 25%;
         margin-bottom: 40px;
@@ -34,7 +36,11 @@
           flex: 50%;
         }
         @media all and (max-width: 500px) {
-          flex: 100%;
+          box-sizing: border-box;
+          flex-wrap: nowrap;
+          flex: 50%;
+          margin-bottom: 20px;
+          padding: 0 10px;
         }
         .dashboard_circle {
           background-color: #f1f1f1;
@@ -43,11 +49,22 @@
           height: 200px;
           margin: auto auto 20px auto;
           width: 200px;
+          @media all and (max-width: 500px) {
+            background-color: transparent;
+            border-radius: 0;
+            border: 0;
+            height: auto;
+            margin: auto auto;
+            width: auto;
+          }
           .dashboard_item_image {
             font-size: 0;
             margin-bottom: 10px;
             margin-top: 10px;
             text-align: center;
+            @media all and (max-width: 500px) {
+              display: none;
+            }
             img {
               height: 80px;
               width: auto;
@@ -58,6 +75,9 @@
             height: 30px;
             margin: auto auto 10px auto;
             width: 160px;
+            @media all and (max-width: 500px) {
+              display: none;
+            }
             svg {
               height: 100%;
               width: 100%;
@@ -90,11 +110,12 @@
           letter-spacing: 0.02em;
           margin-bottom: 0px;
           text-align: center;
+          margin-bottom: 2px;
           text-transform: uppercase;
         } 
         .dashboard_item_meta {
           color: #6E6259;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 300;
           margin-bottom: 5px;
           text-align: center;
@@ -113,6 +134,7 @@
     
     .footnote_container {
       max-width: 1350px;
+      display: none;
       margin: auto auto 40px auto;
       p {
         color: #6E6259;
@@ -124,14 +146,28 @@
     }
     .tabs_container {
       display: flex;
-      margin: auto auto auto auto;
-      width: 100%;
-      max-width: 800px;
       justify-content: space-between;
+      margin: auto auto auto auto;
+      max-width: 800px;
+      width: 100%;
       .tab_container {
+        flex: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        @media all and (min-width: 801px) {
+          &:nth-child(2) {
+            margin: 0 20px;
+          }
+        }
+        @media all and (max-width: 800px) {
+          &:nth-child(2) {
+            button {
+              border-width: 0 1px 0 1px
+            }
+          }
+        }
         button {
           background-color: #009edb;
-          border-radius: 20px 20px;
           border: 0;
           box-sizing: border-box;
           cursor: pointer;
@@ -144,11 +180,19 @@
           transition-duration: 0.1s;
           transition-property: border-radius;
           transition-timing-function: linear;
-          width: 250px;
-          &.selected,
-          &.not_selected {
-            border-radius: 20px 20px 0 0;
-            border-radius: 20px 20px 0 0;
+          width: 100%;
+          @media all and (min-width: 801px) {
+            border-radius: 20px 20px;
+            &.selected,
+            &.not_selected {
+              border-radius: 20px 20px 0 0;
+              border-radius: 20px 20px 0 0;
+            }
+          }
+          @media all and (max-width: 800px) {
+            width: 100%;
+            border-style: solid;
+            border-color: #E3EDF6;
           }
           &:hover,
           &.selected {
@@ -164,10 +208,12 @@
           }
           .label {
             display: inline-block;
-            font-size: 24px;
-            padding-left: 70px;
+            font-size: 20px;
             position: relative;
             vertical-align: middle;
+            @media all and (max-width: 500px) {
+              width: 100%;
+            }
             &.label_food:before {
               background-image: url("../assets/img/icons/Ukraine_brief_3-2022-food_w.png");
             }
@@ -188,6 +234,12 @@
               position: absolute;
               top: 0;
               width: 56px;
+              @media all and (max-width: 800px) {
+                display: none;
+              }
+            }
+            @media all and (min-width: 801px) {
+              padding-left: 70px;
             }
           }
           &.selected,
@@ -220,10 +272,13 @@
           width: 100%;
           iframe {
             border: none;
-            height: 600px;
+            height: 450px !important;
             margin-bottom: 20px;
             min-width: 100% !important;
             width: 0;
+            @media all and (max-width: 490px) {
+              height: 400px !important;
+            }
           }
           .growths_container {
             .growth_container {
@@ -250,11 +305,41 @@
               }
               .growth_meta {
                 color: #6E6259;
-                font-size: 16px;
+                font-size: 15px;
                 font-weight: 300;
                 margin-left: 10px;
                 vertical-align: -1px;
               }
+            }
+          }
+        }
+        .close_container {
+          margin-bottom: 20px;
+          text-align: center;
+          width: 100%;
+          button {
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #009edb;
+            box-sizing: border-box;
+            color: #454545;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Roboto;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.27px;
+            line-height: 1;
+            margin-bottom: 10px;
+            min-width: 200px;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            &:hover {
+              background-color: #e6e6e6;
+              border-color: #adadad;
+              color: #333;
             }
           }
         }

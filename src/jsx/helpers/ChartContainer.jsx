@@ -6,7 +6,7 @@ function ChartContainer({
 }) {
   return (
     <div className="chart_container">
-      <iframe loading="lazy" title={title} aria-label="Interactive line chart" id={id} data-src={src} src={null} scrolling="no" frameBorder="0" height="400" />
+      <iframe loading="lazy" title={title} aria-label="Interactive line chart" id={id} data-src={src} src={null} scrolling="no" frameBorder="0" height="auto" />
       <div className="growths_container">
         {growth && growth.map(el => (
           <div key={el.label} className="growth_container">

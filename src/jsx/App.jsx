@@ -113,6 +113,7 @@ function App() {
     } catch (error) {
       console.error(error);
     }
+
     // eslint-disable-next-line
     !(function () {
       // eslint-disable-next-line
@@ -121,17 +122,21 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const closeAll = () => {
+    document.querySelectorAll('.tab_content').forEach(el => {
+      el.style.opacity = 0;
+      el.style.display = 'none';
+      el.classList.remove('selected');
+    });
+    document.querySelectorAll('.tab_button').forEach(el => {
+      el.classList.remove('selected');
+      el.classList.remove('not_selected');
+    });
+  };
+
   const changeTab = (event, tab) => {
     if (event.currentTarget.classList.contains('selected') === true) {
-      document.querySelectorAll('.tab_content').forEach(el => {
-        el.style.opacity = 0;
-        el.style.display = 'none';
-        el.classList.remove('selected');
-      });
-      document.querySelectorAll('.tab_button').forEach(el => {
-        el.classList.remove('selected');
-        el.classList.remove('not_selected');
-      });
+      closeAll();
     } else {
       document.querySelectorAll('.tab_content').forEach(el => {
         el.style.opacity = 0;
@@ -161,9 +166,6 @@ function App() {
           <DashBoardItem desc="Higher transportation costs lead to higher prices of goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Shipping prices" unit="%" value={value_2} />
           <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
         </div>
-        <div className="footnote_container">
-          <p>Note: Food prices is based on FAO Food Price Index and Shipping prices is based on Clarkson Sea Index</p>
-        </div>
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
           <div className="tab_container tab_container">
@@ -184,19 +186,22 @@ function App() {
         </div>
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
-            <ChartContainer title="FAO Food Price Index" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/1/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} growth_values={['+50%']} growth_metas={['Since Jan 2020']} />
-            <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/1/" growth={[]} />
-            <ChartContainer title="Fertilizer Price Index" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/2/" growth={[]} />
+            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} growth_values={['+50%']} growth_metas={['Since Jan 2020']} />
+            <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[]} />
+            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/4/" growth={[]} />
+            <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/3/" growth={[{ label: 'Example1', value: '+50%', meta: 'Since Jan 2020' }, { label: 'Example2', value: '+50%', meta: 'Since Jan 2020' }]} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Example1', value: '+50%', meta: 'Since Jan 2020' }, { label: 'Example2', value: '+50%', meta: 'Since Jan 2020' }]} />
+            <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
-            <ChartContainer title="GDP Nowcast" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/e7bWi/1/" growth={[]} />
-            <ChartContainer title="Trade nowcast" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/bqldf/1/" growth={[]} />
-            <ChartContainer title="Inflation across the globe" id="" src="https://datawrapper.dwcdn.net/UoC7z/1/" growth={[]} />
-            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/TvpL4/1/" growth={[]} />
-            <ChartContainer title="Emerging markets bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/ogUdA/1/" growth={[]} />
+            <ChartContainer title="GDP Nowcast" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/e7bWi/3/" growth={[]} />
+            <ChartContainer title="Trade nowcast" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/bqldf/4/" growth={[]} />
+            <ChartContainer title="Inflation across the globe" id="" src="https://datawrapper.dwcdn.net/UoC7z/5/" growth={[]} />
+            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/TvpL4/5/" growth={[]} />
+            <ChartContainer title="Emerging markets bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/ogUdA/3/" growth={[]} />
+            <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
         </div>
         <noscript>Your browser does not support JavaScript!</noscript>
