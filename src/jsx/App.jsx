@@ -5,6 +5,7 @@ import '../styles/styles.less';
 // import FormatNr from './helpers/FormatNr.js';
 // import RoundNr from './helpers/RoundNr.js';
 import DashBoardItem from './helpers/DashBoardItem.jsx';
+import ChartContainer from './helpers/ChartContainer.jsx';
 
 import barrel from '../../assets/img/icons/Ukraine_brief_3-2022-barrel.png';
 import bill from '../../assets/img/icons/Ukraine_brief_3-2022-bill.png';
@@ -13,23 +14,6 @@ import wheat from '../../assets/img/icons/Ukraine_brief_3-2022-wheat.png';
 
 function App() {
   // Data states.
-  const [data, setData] = useState(false);
-
-  useEffect(() => {
-    const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/2022-2022-ukraine_brief_3_dashboard.json' : './assets/data/data.json';
-    try {
-      fetch(data_file)
-        .then(response => response.text())
-        .then(body => setData(JSON.parse(body)));
-    } catch (error) {
-      console.error(error);
-    }
-    // eslint-disable-next-line
-    !(function () {
-      // eslint-disable-next-line
-      window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll('iframe'); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
-    }());
-  }, []);
 
   const [start_0, setStart_0] = useState(false);
   const [start_1, setStart_1] = useState(false);
@@ -56,7 +40,6 @@ function App() {
     } else if (i === 3) {
       setStart_3(true);
     }
-
     document.querySelector(`.dashboard_item_${i}`).style.opacity = 1;
     document.querySelector(`.dashboard_item_${i}`).style.visibility = 'visible';
   };
@@ -74,10 +57,10 @@ function App() {
         makeVisible(i);
         i++;
       }, 0);
-    }, 1000);
+    }, 0);
   };
 
-  useEffect(() => {
+  const cleanData = (data) => {
     if (data !== false) {
       let date;
       // FAO food price index.
@@ -116,9 +99,27 @@ function App() {
       setMeta_3(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_3(Math.floor(((series_3.current[series_3.current.length - 1].value - series_3.current[0].value) / series_3.current[0].value) * 100));
     }
+    document.querySelector('.app_content').style.opacity = 1;
     startAnimation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  };
+
+  useEffect(() => {
+    const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/2022-2022-ukraine_brief_3_dashboard.json' : './assets/data/data.json';
+    try {
+      fetch(data_file)
+        .then(response => response.text())
+        .then(body => cleanData(JSON.parse(body)));
+    } catch (error) {
+      console.error(error);
+    }
+    // eslint-disable-next-line
+    !(function () {
+      // eslint-disable-next-line
+      window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll('iframe'); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
+    }());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const changeTab = (event, tab) => {
     if (event.currentTarget.classList.contains('selected') === true) {
@@ -141,11 +142,9 @@ function App() {
         el.classList.remove('selected');
         el.classList.add('not_selected');
       });
-
       document.querySelector(tab).style.opacity = 1;
       document.querySelector(tab).style.display = 'flex';
       event.currentTarget.classList.add('selected');
-
       document.querySelectorAll(`${tab} iframe`).forEach(el => {
         el.src = el.getAttribute('data-src');
       });
@@ -154,70 +153,54 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Pulse of the global crisis</h1>
-      <div className="dashboard_items">
-        <DashBoardItem desc="Higher value means higher prices of food" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="Food prices" unit="%" value={value_0} />
-        <DashBoardItem desc="Higher value lead to less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Emerging Market Sovereign Bond Spread" unit="%" value={value_1} />
-        <DashBoardItem desc="Higher transportation costs lead to higher prices of goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Shipping prices" unit="%" value={value_2} />
-        <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
+      <div className="app_content">
+        <h1>Pulse of the global crisis</h1>
+        <div className="dashboard_items">
+          <DashBoardItem desc="Higher value means higher prices of food" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="Food prices" unit="%" value={value_0} />
+          <DashBoardItem desc="Higher value lead to less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Emerging Market Sovereign Bond Spread" unit="%" value={value_1} />
+          <DashBoardItem desc="Higher transportation costs lead to higher prices of goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Shipping prices" unit="%" value={value_2} />
+          <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
+        </div>
+        <div className="footnote_container">
+          <p>Note: Food prices is based on FAO Food Price Index and Shipping prices is based on Clarkson Sea Index</p>
+        </div>
+        <h1>Select a category to dive deeper</h1>
+        <div className="tabs_container">
+          <div className="tab_container tab_container">
+            <button type="button" className="tab_button button_food" onClick={(event) => changeTab(event, '.tab_content_food')}>
+              <span className="label label_food">Food</span>
+            </button>
+          </div>
+          <div className="tab_container">
+            <button type="button" className="tab_button button_energy" onClick={(event) => changeTab(event, '.tab_content_energy')}>
+              <span className="label label_energy">Energy</span>
+            </button>
+          </div>
+          <div className="tab_container">
+            <button type="button" className="tab_button button_finance" onClick={(event) => changeTab(event, '.tab_content_finance')}>
+              <span className="label label_finance">Finance</span>
+            </button>
+          </div>
+        </div>
+        <div className="tabs_content">
+          <div className="tab_content tab_content_food">
+            <ChartContainer title="FAO Food Price Index" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/1/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} growth_values={['+50%']} growth_metas={['Since Jan 2020']} />
+            <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/1/" growth={[]} />
+            <ChartContainer title="Fertilizer Price Index" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/2/" growth={[]} />
+          </div>
+          <div className="tab_content tab_content_energy">
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/3/" growth={[{ label: 'Example1', value: '+50%', meta: 'Since Jan 2020' }, { label: 'Example2', value: '+50%', meta: 'Since Jan 2020' }]} />
+          </div>
+          <div className="tab_content tab_content_finance">
+            <ChartContainer title="GDP Nowcast" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/e7bWi/1/" growth={[]} />
+            <ChartContainer title="Trade nowcast" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/bqldf/1/" growth={[]} />
+            <ChartContainer title="Inflation across the globe" id="" src="https://datawrapper.dwcdn.net/UoC7z/1/" growth={[]} />
+            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/TvpL4/1/" growth={[]} />
+            <ChartContainer title="Emerging markets bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/ogUdA/1/" growth={[]} />
+          </div>
+        </div>
+        <noscript>Your browser does not support JavaScript!</noscript>
       </div>
-      <div className="footnote_container">
-        <p>Note: Food prices is based on FAO Food Price Index and Shipping prices is based on Clarkson Sea Index</p>
-      </div>
-      <h1>Select a category to dive deeper</h1>
-      <div className="tabs_container">
-        <div className="tab_container tab_container">
-          <button type="button" className="tab_button button_food" onClick={(event) => changeTab(event, '.tab_content_food')}>
-            <span className="label label_food">Food</span>
-          </button>
-        </div>
-        <div className="tab_container">
-          <button type="button" className="tab_button button_energy" onClick={(event) => changeTab(event, '.tab_content_energy')}>
-            <span className="label label_energy">Energy</span>
-          </button>
-        </div>
-        <div className="tab_container">
-          <button type="button" className="tab_button button_finance" onClick={(event) => changeTab(event, '.tab_content_finance')}>
-            <span className="label label_finance">Finance</span>
-          </button>
-        </div>
-      </div>
-      <div className="tabs_content">
-        <div className="tab_content tab_content_food">
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="FAO Food Price Index" aria-label="Interactive line chart" id="datawrapper-chart-Q9Axr" data-src="https://datawrapper.dwcdn.net/Q9Axr/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Selected Commodity Prices" aria-label="Interactive line chart" id="datawrapper-chart-hA5mF" data-src="https://datawrapper.dwcdn.net/hA5mF/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Fertilizer Price Index" aria-label="Interactive line chart" id="datawrapper-chart-TrG3p" data-src="https://datawrapper.dwcdn.net/TrG3p/2/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-        </div>
-        <div className="tab_content tab_content_energy">
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Energy prices" aria-label="Interactive line chart" id="datawrapper-chart-l9meg" data-src="https://datawrapper.dwcdn.net/l9meg/3/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-        </div>
-        <div className="tab_content tab_content_finance">
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="GDP Nowcast" aria-label="Interactive line chart" id="datawrapper-chart-e7bWi" data-src="https://datawrapper.dwcdn.net/e7bWi/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Trade nowcast" aria-label="Interactive line chart" id="datawrapper-chart-bqldf" data-src="https://datawrapper.dwcdn.net/bqldf/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Inflation across the globe" aria-label="Interactive line chart" id="datawrapper-chart-UoC7z" data-src="https://datawrapper.dwcdn.net/UoC7z/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Price of shipping" aria-label="Interactive line chart" id="datawrapper-chart-TvpL4" data-src="https://datawrapper.dwcdn.net/TvpL4/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-          <div className="datawrapper_content">
-            <iframe loading="lazy" title="Emerging markets bond spreads" aria-label="Interactive line chart" id="datawrapper-chart-ogUdA" data-src="https://datawrapper.dwcdn.net/ogUdA/1/" src={null} scrolling="no" frameBorder="0" height="400" />
-          </div>
-        </div>
-      </div>
-      <noscript>Your browser does not support JavaScript!</noscript>
     </div>
   );
 }
