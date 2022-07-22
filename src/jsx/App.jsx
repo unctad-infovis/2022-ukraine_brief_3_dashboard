@@ -115,7 +115,7 @@ function App() {
     }
 
     try {
-      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv?asd')
+      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv')
         .then(response => response.text())
         .then(body => console.log(body));
     } catch (error) {
@@ -200,7 +200,7 @@ function App() {
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Dummy data', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data', value: '+50%', meta: 'Dummy data' }]} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data2', value: '+50%', meta: 'Dummy data' }]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
