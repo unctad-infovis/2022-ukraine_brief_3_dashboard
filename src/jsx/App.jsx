@@ -69,7 +69,7 @@ function App() {
         value: el.value
       }));
       date = new Date(series_0.current[0].date);
-      setMeta_0(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
+      setMeta_0(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
       setValue_0(Math.floor(((series_0.current[series_0.current.length - 1].value - series_0.current[0].value) / series_0.current[0].value) * 100));
 
       // Crude oil price.
@@ -78,7 +78,7 @@ function App() {
         value: el.value
       }));
       date = new Date(series_1.current[0].date);
-      setMeta_1(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
+      setMeta_1(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
       setValue_1(Math.floor(((series_1.current[series_1.current.length - 1].value - series_1.current[0].value) / series_1.current[0].value) * 100));
 
       // Clarkson.
@@ -87,7 +87,7 @@ function App() {
         value: el.clarksea_index
       }));
       date = new Date(series_2.current[0].date);
-      setMeta_2(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
+      setMeta_2(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
       setValue_2(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
 
       // Bond spread.
@@ -96,7 +96,7 @@ function App() {
         value: el.bond_spread_sovereign
       }));
       date = new Date(series_1.current[0].date);
-      setMeta_3(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
+      setMeta_3(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
       setValue_3(Math.floor(((series_3.current[series_3.current.length - 1].value - series_3.current[0].value) / series_3.current[0].value) * 100));
     }
     document.querySelector('.app_content').style.opacity = 1;
@@ -114,13 +114,13 @@ function App() {
       console.error(error);
     }
 
-    // try {
-    //   fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv')
-    //     .then(response => response.text())
-    //     .then(body => console.log(body));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv?asd')
+        .then(response => response.text())
+        .then(body => console.log(body));
+    } catch (error) {
+      console.error(error);
+    }
 
     // eslint-disable-next-line
     !(function () {
@@ -170,9 +170,9 @@ function App() {
         <h1>Pulse of the global crisis</h1>
         <div className="dashboard_items">
           <DashBoardItem desc="Higher value means higher prices of food" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="Food prices" unit="%" value={value_0} />
-          <DashBoardItem desc="Higher value lead to less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Emerging Market Sovereign Bond Spread" unit="%" value={value_1} />
+          <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_1} />
           <DashBoardItem desc="Higher transportation costs lead to higher prices of goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Shipping prices" unit="%" value={value_2} />
-          <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_3} />
+          <DashBoardItem desc="Higher value lead to less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Emerging Market Sovereign Bond Spread" unit="%" value={value_3} />
         </div>
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
@@ -194,13 +194,13 @@ function App() {
         </div>
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
-            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} />
+            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since January 2020' }]} />
             <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[]} />
             <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/7/" growth={[]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Crude oil', value: '+50%', meta: 'Since Jan 2020' }, { label: 'Natural gas', value: '+50%', meta: 'Since Jan 2020' }]} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Dummy data', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data', value: '+50%', meta: 'Dummy data' }]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
