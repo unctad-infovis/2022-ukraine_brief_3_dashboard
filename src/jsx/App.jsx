@@ -115,7 +115,7 @@ function App() {
     }
 
     try {
-      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv')
+      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv', { method: 'GET' })
         .then(response => response.text())
         .then(body => console.log(body));
     } catch (error) {
@@ -195,8 +195,8 @@ function App() {
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
             <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since January 2020' }]} />
-            <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[]} />
-            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/7/" growth={[]} />
+            <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data2', value: '+50%', meta: 'Dummy data' }]} />
+            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/7/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
@@ -207,8 +207,8 @@ function App() {
             <ChartContainer title="GDP Nowcast" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/e7bWi/3/" growth={[]} />
             <ChartContainer title="Trade nowcast" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/bqldf/4/" growth={[]} />
             <ChartContainer title="Inflation across the globe" id="" src="https://datawrapper.dwcdn.net/UoC7z/5/" growth={[]} />
-            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/TvpL4/5/" growth={[]} />
-            <ChartContainer title="Emerging markets bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/ogUdA/3/" growth={[]} />
+            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/TvpL4/5/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }]} />
+            <ChartContainer title="Emerging markets bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/ogUdA/3/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data2', value: '+50%', meta: 'Dummy data' }]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
         </div>
