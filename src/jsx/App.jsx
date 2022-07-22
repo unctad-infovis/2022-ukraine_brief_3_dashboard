@@ -72,10 +72,10 @@ function App() {
       setMeta_0(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_0(Math.floor(((series_0.current[series_0.current.length - 1].value - series_0.current[0].value) / series_0.current[0].value) * 100));
 
-      // Bond spread.
-      series_1.current = data.bond_spread.map(el => ({
+      // Crude oil price.
+      series_1.current = data.crude_oil_price.map(el => ({
         date: el.date,
-        value: el.bond_spread_sovereign
+        value: el.value
       }));
       date = new Date(series_1.current[0].date);
       setMeta_1(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
@@ -90,12 +90,12 @@ function App() {
       setMeta_2(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_2(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
 
-      // Crude oil price.
-      series_3.current = data.crude_oil_price.map(el => ({
+      // Bond spread.
+      series_3.current = data.bond_spread.map(el => ({
         date: el.date,
-        value: el.value
+        value: el.bond_spread_sovereign
       }));
-      date = new Date(series_3.current[0].date);
+      date = new Date(series_1.current[0].date);
       setMeta_3(`${date.toLocaleString('en-EN', { month: 'short' })} ${date.getFullYear()}`);
       setValue_3(Math.floor(((series_3.current[series_3.current.length - 1].value - series_3.current[0].value) / series_3.current[0].value) * 100));
     }
@@ -113,6 +113,14 @@ function App() {
     } catch (error) {
       console.error(error);
     }
+
+    // try {
+    //   fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv')
+    //     .then(response => response.text())
+    //     .then(body => console.log(body));
+    // } catch (error) {
+    //   console.error(error);
+    // }
 
     // eslint-disable-next-line
     !(function () {
@@ -188,7 +196,7 @@ function App() {
           <div className="tab_content tab_content_food">
             <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since Jan 2020' }]} />
             <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[]} />
-            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/4/" growth={[]} />
+            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/7/" growth={[]} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
