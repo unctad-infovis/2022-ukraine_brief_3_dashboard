@@ -40,7 +40,6 @@ function App() {
           setSeriesEnergy(data);
           break;
         case 'bond_spread.csv':
-          console.log(data);
           setSeriesBondSpread(data);
           break;
         case 'wb_fertilizer_index.csv':
@@ -74,13 +73,21 @@ function App() {
     files.forEach(file => {
       const data_file = `https://storage.unctad.org/2022-ukraine_brief_3_dashboard/${file}`;
       try {
-        fetch(data_file)
+        fetch(data_file, { method: 'GET' })
           .then(response => response.text())
           .then(body => cleanData(CSVtoJSON(body), file));
       } catch (error) {
         console.error(error);
       }
     });
+
+    try {
+      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv', { method: 'GET' })
+        .then(response => response.text())
+        .then(body => console.log(body));
+    } catch (error) {
+      console.error(error);
+    }
 
     // eslint-disable-next-line no-unused-expressions,func-names
     !(function () {
