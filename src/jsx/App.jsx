@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/styles.less';
 
 // Load helpers.
@@ -6,6 +6,7 @@ import '../styles/styles.less';
 // import RoundNr from './helpers/RoundNr.js';
 import DashBoardItem from './helpers/DashBoardItem.jsx';
 import ChartContainer from './helpers/ChartContainer.jsx';
+import CSVtoJSON from './helpers/CSVtoJSON.js';
 
 import barrel from '../../assets/img/icons/Ukraine_brief_3-2022-barrel.png';
 import bill from '../../assets/img/icons/Ukraine_brief_3-2022-bill.png';
@@ -15,116 +16,75 @@ import wheat from '../../assets/img/icons/Ukraine_brief_3-2022-wheat.png';
 function App() {
   // Data states.
 
-  const [start_0, setStart_0] = useState(false);
-  const [start_1, setStart_1] = useState(false);
-  const [start_2, setStart_2] = useState(false);
-  const [start_3, setStart_3] = useState(false);
-  const series_0 = useRef([]);
-  const series_1 = useRef([]);
-  const series_2 = useRef([]);
-  const series_3 = useRef([]);
-  const [value_0, setValue_0] = useState(0);
-  const [value_1, setValue_1] = useState(0);
-  const [value_2, setValue_2] = useState(0);
-  const [value_3, setValue_3] = useState(0);
-  const [meta_0, setMeta_0] = useState('');
-  const [meta_1, setMeta_1] = useState('');
-  const [meta_2, setMeta_2] = useState('');
-  const [meta_3, setMeta_3] = useState('');
+  // eslint-disable-next-line
+  const [seriesBondSpread, setSeriesBondSpread] = useState([]);
+  const [seriesClarkson, setSeriesClarkson] = useState([]);
+  const [seriesCPI, setSeriesCPI] = useState([]);
+  const [seriesEnergy, setSeriesEnergy] = useState([]);
+  const [seriesFaoFoodPriceIndex, setSeriesFaoFoodPriceIndex] = useState([]);
+  const [seriesGDPNowCast, setGDPNowCast] = useState([]);
+  const [seriesTradeNowcast, setTradeNowcast] = useState([]);
+  const [seriesWBFertilizerIndex, setSeriesWBFertilizerIndex] = useState([]);
+  const [seriesWPWheatSunflower, setWPWheatSunflower] = useState([]);
 
-  const makeVisible = (i) => {
-    if (i === 1) {
-      setStart_1(true);
-    } else if (i === 2) {
-      setStart_2(true);
-    } else if (i === 3) {
-      setStart_3(true);
-    }
-    document.querySelector(`.dashboard_item_${i}`).style.opacity = 1;
-    document.querySelector(`.dashboard_item_${i}`).style.visibility = 'visible';
-  };
-
-  const startAnimation = () => {
-    setTimeout(() => {
-      setStart_0(true);
-      makeVisible(0);
-      const item_count = document.querySelectorAll('.dashboard_item').length;
-      let i = 1;
-      const interval = setInterval(() => {
-        if (i >= (item_count - 1)) {
-          clearInterval(interval);
-        }
-        makeVisible(i);
-        i++;
-      }, 0);
-    }, 0);
-  };
-
-  const cleanData = (data) => {
+  const cleanData = (data, type) => {
     if (data !== false) {
-      let date;
-      // FAO food price index.
-      series_0.current = data.fao_food_price_index.map(el => ({
-        date: el.date,
-        value: el.value
-      }));
-      date = new Date(series_0.current[0].date);
-      setMeta_0(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
-      setValue_0(Math.floor(((series_0.current[series_0.current.length - 1].value - series_0.current[0].value) / series_0.current[0].value) * 100));
+      switch (type) {
+        case 'fao_food_price_index.csv':
+          setSeriesFaoFoodPriceIndex(data);
+          break;
+        case 'clarkson.csv':
+          setSeriesClarkson(data);
+          break;
+        case 'energy.csv':
+          setSeriesEnergy(data);
+          break;
+        case 'bond_spread.csv':
+          console.log(data);
+          setSeriesBondSpread(data);
+          break;
+        case 'wb_fertilizer_index.csv':
+          setSeriesWBFertilizerIndex(data);
+          break;
+        case 'cpi.csv':
+          setSeriesCPI(data);
+          break;
+        case 'gdp_nowcast.csv':
+          setGDPNowCast(data);
+          break;
+        case 'trade_nowcast.csv':
+          setTradeNowcast(data);
+          break;
+        case 'wb_wheat_sunflower.csv':
+          setWPWheatSunflower(data);
+          break;
 
-      // Crude oil price.
-      series_1.current = data.crude_oil_price.map(el => ({
-        date: el.date,
-        value: el.value
-      }));
-      date = new Date(series_1.current[0].date);
-      setMeta_1(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
-      setValue_1(Math.floor(((series_1.current[series_1.current.length - 1].value - series_1.current[0].value) / series_1.current[0].value) * 100));
-
-      // Clarkson.
-      series_2.current = data.clarkson.map(el => ({
-        date: el.date,
-        value: el.clarksea_index
-      }));
-      date = new Date(series_2.current[0].date);
-      setMeta_2(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
-      setValue_2(Math.floor(((series_2.current[series_2.current.length - 1].value - series_2.current[0].value) / series_2.current[0].value) * 100));
-
-      // Bond spread.
-      series_3.current = data.bond_spread.map(el => ({
-        date: el.date,
-        value: el.bond_spread_sovereign
-      }));
-      date = new Date(series_1.current[0].date);
-      setMeta_3(`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
-      setValue_3(Math.floor(((series_3.current[series_3.current.length - 1].value - series_3.current[0].value) / series_3.current[0].value) * 100));
+        default:
+          break;
+      }
     }
     document.querySelector('.app_content').style.opacity = 1;
-    startAnimation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
   useEffect(() => {
-    const data_file = (window.location.href.includes('unctad.org')) ? '/sites/default/files/data-file/2022-2022-ukraine_brief_3_dashboard.json' : './assets/data/data.json';
-    try {
-      fetch(data_file)
-        .then(response => response.text())
-        .then(body => cleanData(JSON.parse(body)));
-    } catch (error) {
-      console.error(error);
-    }
+    const files = ['bond_spread.csv', 'clarkson.csv', 'cpi.csv', 'energy.csv',
+      'fao_food_price_index.csv', 'gdp_nowcast.csv', 'trade_nowcast.csv', 'wb_fertilizer_index.csv', 'wb_wheat_sunflower.csv'];
 
-    try {
-      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv', { method: 'GET' })
-        .then(response => response.text())
-        .then(body => console.log(body));
-    } catch (error) {
-      console.error(error);
-    }
+    files.forEach(file => {
+      const data_file = `https://storage.unctad.org/2022-ukraine_brief_3_dashboard/${file}`;
+      try {
+        fetch(data_file)
+          .then(response => response.text())
+          .then(body => cleanData(CSVtoJSON(body), file));
+      } catch (error) {
+        console.error(error);
+      }
+    });
 
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-unused-expressions,func-names
     !(function () {
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-restricted-syntax,no-void,guard-for-in
       window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll('iframe'); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
     }());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -169,10 +129,10 @@ function App() {
       <div className="app_content">
         <h1>Pulse of the global crisis</h1>
         <div className="dashboard_items">
-          <DashBoardItem desc="Higher value means higher prices of food" idx="0" image={wheat} meta={meta_0} start={start_0} series={series_0.current} title="Food prices" unit="%" value={value_0} />
-          <DashBoardItem desc="Higher oil prices lead to higher prices at the gas station" idx="3" image={barrel} meta={meta_3} start={start_3} series={series_3.current} title="Crude Oil Price" unit="%" value={value_1} />
-          <DashBoardItem desc="Higher transportation costs lead to higher prices of goods" idx="2" image={boat} meta={meta_2} start={start_2} series={series_2.current} title="Shipping prices" unit="%" value={value_2} />
-          <DashBoardItem desc="Higher value lead to less governmental independence" idx="1" image={bill} meta={meta_1} start={start_1} series={series_1.current} title="Emerging Market Sovereign Bond Spread" unit="%" value={value_3} />
+          <DashBoardItem idx="0" image={wheat} series={seriesFaoFoodPriceIndex} series_value_name="value" title="Food prices" unit="%" />
+          <DashBoardItem idx="1" image={barrel} series={seriesEnergy} series_value_name="crude_oil_price" title="Crude Oil Price" unit="%" />
+          <DashBoardItem idx="2" image={boat} series={seriesClarkson} series_value_name="clarksea_index" title="Shipping prices" unit="%" />
+          <DashBoardItem idx="3" image={bill} series={seriesBondSpread} series_value_name="bond_spread_sovereign" title="Emerging markets: Sovereign bond spread" unit="%" />
         </div>
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
@@ -194,21 +154,21 @@ function App() {
         </div>
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
-            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/Q9Axr/12/" growth={[{ label: 'FAO Food Price Index', value: '+50%', meta: 'Since January 2020' }]} />
-            <ChartContainer title="Selected Commodity Prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/hA5mF/3/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data2', value: '+50%', meta: 'Dummy data' }]} />
-            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/TrG3p/7/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }]} />
+            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/1TNTr" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
+            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/7pkwP" meta={[{ label: 'Sunflower Oil', value_name: 'wb_sunflower_oil_price' }, { label: 'Wheat', value_name: 'wb_wheat_us_hrw_price' }]} series={seriesWPWheatSunflower} />
+            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/AH7rn" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/l9meg/6/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data2', value: '+50%', meta: 'Dummy data' }]} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/rUgc4" meta={[{ label: 'Crude oil', value_name: 'crude_oil_price' }, { label: 'Natural gas', value_name: 'natural_gas' }]} series={seriesEnergy} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
-            <ChartContainer title="GDP Nowcast" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/e7bWi/3/" growth={[]} />
-            <ChartContainer title="Trade nowcast" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/bqldf/4/" growth={[]} />
-            <ChartContainer title="Inflation across the globe" id="" src="https://datawrapper.dwcdn.net/UoC7z/5/" growth={[]} />
-            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/TvpL4/5/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }]} />
-            <ChartContainer title="Emerging markets bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/ogUdA/3/" growth={[{ label: 'Dummy data1', value: '+50%', meta: 'Dummy data' }, { label: 'Dummy data2', value: '+50%', meta: 'Dummy data' }]} />
+            <ChartContainer title="GDP growth" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/da7lC" meta={[]} series={seriesGDPNowCast} />
+            <ChartContainer title="Trade growth" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/J1b9d" meta={[]} series={seriesTradeNowcast} />
+            <ChartContainer title="Inflation worldwide" id="" src="https://datawrapper.dwcdn.net/p5F7t" meta={[]} series={seriesCPI} />
+            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/lSFyj" meta={[{ label: 'ClarkSea index', value_name: 'clarksea_index' }]} series={seriesClarkson} />
+            <ChartContainer title="Emerging markets: Sovereign bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/9nc42" meta={[{ label: 'Corporate bond spread', value_name: 'bond_spread_corporate' }, { label: 'Sovereign  bond spread', value_name: 'bond_spread_sovereign' }]} series={seriesBondSpread} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
         </div>

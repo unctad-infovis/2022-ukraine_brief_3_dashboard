@@ -148,7 +148,7 @@
       display: flex;
       justify-content: space-between;
       margin: auto auto auto auto;
-      max-width: 800px;
+      max-width: 850px;
       width: 100%;
       .tab_container {
         box-sizing: border-box;
@@ -256,7 +256,7 @@
     .tabs_content {
       background-color: #fff;
       margin: 0 auto auto auto;
-      max-width: 800px;
+      max-width: 850px;
       transition-duration: 0.5s;
       transition-property: opacity;
       transition-timing-function: linear;
@@ -266,7 +266,6 @@
         display: none;
         flex-wrap: wrap;
         margin: auto auto;
-        max-width: 800px;
         opacity: 0;
         .chart_container {
           box-sizing: border-box;
@@ -288,14 +287,18 @@
             display: flex;
             .growth_container {
               flex: 100%;
-              margin-bottom: 10px;
-              margin: 0 10px;
+              &:first-child {
+                margin-right: 5px;
+              }
+              &:last-child {
+                margin-left: 5px;
+              }
               .growth_label {
                 color: #000;
                 display: inline-block;
                 font-size: 20px;
                 font-weight: 600;
-                letter-spacing: 0.02em;
+                letter-spacing: -0.01em;
                 margin-right: 10px;
                 margin-bottom: 5px;
                 text-transform: uppercase;
@@ -306,7 +309,6 @@
                 display: inline-block;
                 font-size: 42px;
                 font-weight: 600;
-                letter-spacing: 0.02em;
                 line-height: 40px;
                 margin-right: 5px;
                 vertical-align: middle;
