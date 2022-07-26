@@ -20,10 +20,11 @@ function App() {
   const [seriesCPI, setSeriesCPI] = useState([]);
   const [seriesEnergy, setSeriesEnergy] = useState([]);
   const [seriesFaoFoodPriceIndex, setSeriesFaoFoodPriceIndex] = useState([]);
-  const [seriesGDPNowCast, setGDPNowCast] = useState([]);
-  const [seriesTradeNowcast, setTradeNowcast] = useState([]);
+  const [seriesGDPNowCast, setSeriesGDPNowCast] = useState([]);
+  const [seriesTradeNowcast, setSeriesTradeNowcast] = useState([]);
   const [seriesWBFertilizerIndex, setSeriesWBFertilizerIndex] = useState([]);
-  const [seriesWPWheatSunflower, setWPWheatSunflower] = useState([]);
+  // const [seriesWPWheatSunflower, setSeriesWPWheatSunflower] = useState([]);
+  const [seriesWheatAgriculture, setSeriesWheatAgriculture] = useState([]);
 
   const cleanData = (data, type) => {
     if (data !== false) {
@@ -47,13 +48,13 @@ function App() {
           setSeriesCPI(data);
           break;
         case 'gdp_nowcast.csv':
-          setGDPNowCast(data);
+          setSeriesGDPNowCast(data);
           break;
         case 'trade_nowcast.csv':
-          setTradeNowcast(data);
+          setSeriesTradeNowcast(data);
           break;
-        case 'wb_wheat_sunflower.csv':
-          setWPWheatSunflower(data);
+        case 'wheat_agriculture.csv':
+          setSeriesWheatAgriculture(data);
           break;
 
         default:
@@ -66,7 +67,7 @@ function App() {
 
   useEffect(() => {
     const files = ['bond_spread.csv', 'clarkson.csv', 'cpi.csv', 'energy.csv',
-      'fao_food_price_index.csv', 'gdp_nowcast.csv', 'trade_nowcast.csv', 'wb_fertilizer_index.csv', 'wb_wheat_sunflower.csv'];
+      'fao_food_price_index.csv', 'gdp_nowcast.csv', 'trade_nowcast.csv', 'wb_fertilizer_index.csv', 'wheat_agriculture.csv'];
 
     files.forEach(file => {
       const data_file = `https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/data/${file}`;
@@ -159,7 +160,7 @@ function App() {
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
             <ChartContainer title="Food prices" id="datawrapper-chart-1TNTr" src="https://datawrapper.dwcdn.net/1TNTr" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
-            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-13PzO" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Sunflower Oil', value_name: 'wb_sunflower_oil_price' }, { label: 'Wheat', value_name: 'wb_wheat_us_hrw_price' }]} series={seriesWPWheatSunflower} />
+            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-13PzO" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Agriculture Index', value_name: 'agriculture_index' }, { label: 'Wheat', value_name: 'marketwatch_wheat' }]} series={seriesWheatAgriculture} />
             <ChartContainer title="Fertilizer Price" id="datawrapper-chart-Yb3xC" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
