@@ -4,14 +4,10 @@ import '../styles/styles.less';
 // Load helpers.
 // import FormatNr from './helpers/FormatNr.js';
 // import RoundNr from './helpers/RoundNr.js';
-import DashBoardItem from './helpers/DashBoardItem.jsx';
-import ChartContainer from './helpers/ChartContainer.jsx';
-import CSVtoJSON from './helpers/CSVtoJSON.js';
 
-import barrel from '../../assets/img/icons/Ukraine_brief_3-2022-barrel.png';
-import bill from '../../assets/img/icons/Ukraine_brief_3-2022-bill.png';
-import boat from '../../assets/img/icons/Ukraine_brief_3-2022-boat.png';
-import wheat from '../../assets/img/icons/Ukraine_brief_3-2022-wheat.png';
+import CSVtoJSON from './helpers/CSVtoJSON.js';
+import ChartContainer from './helpers/ChartContainer.jsx';
+import DashBoardItem from './helpers/DashBoardItem.jsx';
 
 function App() {
   // Data states.
@@ -71,7 +67,7 @@ function App() {
       'fao_food_price_index.csv', 'gdp_nowcast.csv', 'trade_nowcast.csv', 'wb_fertilizer_index.csv', 'wb_wheat_sunflower.csv'];
 
     files.forEach(file => {
-      const data_file = `https://storage.unctad.org/2022-ukraine_brief_3_dashboard/${file}`;
+      const data_file = `https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/data/${file}`;
       try {
         fetch(data_file, { method: 'GET' })
           .then(response => response.text())
@@ -80,14 +76,6 @@ function App() {
         console.error(error);
       }
     });
-
-    try {
-      fetch('https://storage.unctad.org/2022-ukraine_brief_3_dashboard/bond_spread.csv', { method: 'GET' })
-        .then(response => response.text())
-        .then(body => console.log(body));
-    } catch (error) {
-      console.error(error);
-    }
 
     // eslint-disable-next-line no-unused-expressions,func-names
     !(function () {
@@ -136,10 +124,10 @@ function App() {
       <div className="app_content">
         <h1>Pulse of the global crisis</h1>
         <div className="dashboard_items">
-          <DashBoardItem idx="0" image={wheat} series={seriesFaoFoodPriceIndex} series_value_name="value" title="Food prices" unit="%" />
-          <DashBoardItem idx="1" image={barrel} series={seriesEnergy} series_value_name="crude_oil_price" title="Crude Oil Price" unit="%" />
-          <DashBoardItem idx="2" image={boat} series={seriesClarkson} series_value_name="clarksea_index" title="Shipping prices" unit="%" />
-          <DashBoardItem idx="3" image={bill} series={seriesBondSpread} series_value_name="bond_spread_sovereign" title="Emerging markets: Sovereign bond spread" unit="%" />
+          <DashBoardItem idx="0" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-wheat.png" series={seriesFaoFoodPriceIndex} series_value_name="value" title="Food prices" unit="%" />
+          <DashBoardItem idx="1" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-barrel.png" series={seriesEnergy} series_value_name="crude_oil_price" title="Crude Oil Price" unit="%" />
+          <DashBoardItem idx="2" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-boat.png" series={seriesClarkson} series_value_name="clarksea_index" title="Shipping prices" unit="%" />
+          <DashBoardItem idx="3" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-bill.png" series={seriesBondSpread} series_value_name="bond_spread_sovereign" title="Emerging markets: Sovereign bond spread" unit="%" />
         </div>
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
@@ -162,20 +150,20 @@ function App() {
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
             <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/1TNTr" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
-            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/7pkwP" meta={[{ label: 'Sunflower Oil', value_name: 'wb_sunflower_oil_price' }, { label: 'Wheat', value_name: 'wb_wheat_us_hrw_price' }]} series={seriesWPWheatSunflower} />
-            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/AH7rn" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
+            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Sunflower Oil', value_name: 'wb_sunflower_oil_price' }, { label: 'Wheat', value_name: 'wb_wheat_us_hrw_price' }]} series={seriesWPWheatSunflower} />
+            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/rUgc4" meta={[{ label: 'Crude oil', value_name: 'crude_oil_price' }, { label: 'Natural gas', value_name: 'natural_gas' }]} series={seriesEnergy} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/CZzPc" meta={[{ label: 'Crude oil', value_name: 'crude_oil_price' }, { label: 'Natural gas', value_name: 'natural_gas' }]} series={seriesEnergy} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
-            <ChartContainer title="GDP growth" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/da7lC" meta={[]} series={seriesGDPNowCast} />
-            <ChartContainer title="Trade growth" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/J1b9d" meta={[]} series={seriesTradeNowcast} />
-            <ChartContainer title="Inflation worldwide" id="" src="https://datawrapper.dwcdn.net/p5F7t" meta={[]} series={seriesCPI} />
-            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/lSFyj" meta={[{ label: 'ClarkSea index', value_name: 'clarksea_index' }]} series={seriesClarkson} />
-            <ChartContainer title="Emerging markets: Sovereign bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/9nc42" meta={[{ label: 'Corporate bond spread', value_name: 'bond_spread_corporate' }, { label: 'Sovereign  bond spread', value_name: 'bond_spread_sovereign' }]} series={seriesBondSpread} />
+            <ChartContainer title="GDP growth" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/toxoa" meta={[]} series={seriesGDPNowCast} />
+            <ChartContainer title="Trade growth" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/nkjeA" meta={[]} series={seriesTradeNowcast} />
+            <ChartContainer title="Inflation worldwide" id="" src="https://datawrapper.dwcdn.net/foPfw" meta={[]} series={seriesCPI} />
+            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/WRywH" meta={[{ label: 'ClarkSea index', value_name: 'clarksea_index' }]} series={seriesClarkson} />
+            <ChartContainer title="Emerging markets: Sovereign bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/7TCLt" meta={[{ label: 'Corporate bond spread', value_name: 'bond_spread_corporate' }, { label: 'Sovereign  bond spread', value_name: 'bond_spread_sovereign' }]} series={seriesBondSpread} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
         </div>

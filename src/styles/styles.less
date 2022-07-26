@@ -46,6 +46,7 @@
           background-color: #f1f1f1;
           border-radius: 50%;
           border: 10px solid #fff;
+          box-sizing: content-box;
           height: 200px;
           margin: auto auto 20px auto;
           width: 200px;
@@ -200,13 +201,13 @@
           &:hover,
           &.selected {
             .label.label_food:before {
-              background-image: url("../assets/img/icons/Ukraine_brief_3-2022-food.png");
+              background-image: url("https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-food.png");
             }
             .label.label_energy:before {
-              background-image: url("../assets/img/icons/Ukraine_brief_3-2022-energy.png");
+              background-image: url("https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-energy.png");
             }
             .label.label_finance:before {
-              background-image: url("../assets/img/icons/Ukraine_brief_3-2022-finance.png");
+              background-image: url("https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-finance.png");
             }
           }
           .label {
@@ -216,13 +217,13 @@
             position: relative;
             vertical-align: middle;
             &.label_food:before {
-              background-image: url("../assets/img/icons/Ukraine_brief_3-2022-food_w.png");
+              background-image: url("https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-food_w.png");
             }
             &.label_energy:before {
-              background-image: url("../assets/img/icons/Ukraine_brief_3-2022-energy_w.png");
+              background-image: url("https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-energy_w.png");
             }
             &.label_finance:before {
-              background-image: url("../assets/img/icons/Ukraine_brief_3-2022-finance_w.png");
+              background-image: url("https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-finance_w.png");
             }
             &:before {
               background-position: 0 50%;
@@ -240,7 +241,8 @@
               }
             }
             @media all and (min-width: 769px) {
-              padding-left: 70px;
+              padding: 0 0 0 70px;
+              line-height: 70px;
             }
             @media all and (max-width: 500px) {
               width: 100%;
