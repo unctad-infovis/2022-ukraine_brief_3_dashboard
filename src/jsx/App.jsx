@@ -149,21 +149,21 @@ function App() {
         </div>
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
-            <ChartContainer title="Food prices" id="datawrapper-chart-Q9Axr" src="https://datawrapper.dwcdn.net/1TNTr" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
-            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-hA5mF" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Sunflower Oil', value_name: 'wb_sunflower_oil_price' }, { label: 'Wheat', value_name: 'wb_wheat_us_hrw_price' }]} series={seriesWPWheatSunflower} />
-            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-TrG3p" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
+            <ChartContainer title="Food prices" id="datawrapper-chart-1TNTr" src="https://datawrapper.dwcdn.net/1TNTr" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
+            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-13PzO" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Sunflower Oil', value_name: 'wb_sunflower_oil_price' }, { label: 'Wheat', value_name: 'wb_wheat_us_hrw_price' }]} series={seriesWPWheatSunflower} />
+            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-Yb3xC" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
-            <ChartContainer title="Energy prices" id="datawrapper-chart-l9meg" src="https://datawrapper.dwcdn.net/CZzPc" meta={[{ label: 'Crude oil', value_name: 'crude_oil_price' }, { label: 'Natural gas', value_name: 'natural_gas' }]} series={seriesEnergy} />
+            <ChartContainer title="Energy prices" id="datawrapper-chart-CZzPc" src="https://datawrapper.dwcdn.net/CZzPc" meta={[{ label: 'Crude oil', value_name: 'crude_oil_price' }, { label: 'Natural gas', value_name: 'natural_gas' }]} series={seriesEnergy} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
-            <ChartContainer title="GDP growth" id="datawrapper-chart-e7bWi" src="https://datawrapper.dwcdn.net/toxoa" meta={[]} series={seriesGDPNowCast} />
-            <ChartContainer title="Trade growth" id="datawrapper-chart-bqldf" src="https://datawrapper.dwcdn.net/nkjeA" meta={[]} series={seriesTradeNowcast} />
-            <ChartContainer title="Inflation worldwide" id="" src="https://datawrapper.dwcdn.net/foPfw" meta={[]} series={seriesCPI} />
-            <ChartContainer title="Price of shipping" id="datawrapper-chart-TvpL4" src="https://datawrapper.dwcdn.net/WRywH" meta={[{ label: 'ClarkSea index', value_name: 'clarksea_index' }]} series={seriesClarkson} />
-            <ChartContainer title="Emerging markets: Sovereign bond spreads" id="datawrapper-chart-ogUdA" src="https://datawrapper.dwcdn.net/7TCLt" meta={[{ label: 'Corporate bond spread', value_name: 'bond_spread_corporate' }, { label: 'Sovereign  bond spread', value_name: 'bond_spread_sovereign' }]} series={seriesBondSpread} />
+            <ChartContainer title="GDP growth" id="datawrapper-chart-toxoa" src="https://datawrapper.dwcdn.net/toxoa" meta={[]} series={seriesGDPNowCast} />
+            <ChartContainer title="Trade growth" id="datawrapper-chart-nkjeA" src="https://datawrapper.dwcdn.net/nkjeA" meta={[]} series={seriesTradeNowcast} />
+            <ChartContainer title="Inflation worldwide" id="datawrapper-chart-foPfw" src="https://datawrapper.dwcdn.net/foPfw" meta={[]} series={seriesCPI} />
+            <ChartContainer title="Price of shipping" id="datawrapper-chart-WRywH" src="https://datawrapper.dwcdn.net/WRywH" meta={[{ label: 'ClarkSea index', value_name: 'clarksea_index' }]} series={seriesClarkson} />
+            <ChartContainer title="Emerging markets: Sovereign bond spreads" id="datawrapper-chart-7TCLt" src="https://datawrapper.dwcdn.net/7TCLt" meta={[{ label: 'Corporate bond spread', value_name: 'bond_spread_corporate' }, { label: 'Sovereign  bond spread', value_name: 'bond_spread_sovereign' }]} series={seriesBondSpread} />
             <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
           </div>
         </div>
