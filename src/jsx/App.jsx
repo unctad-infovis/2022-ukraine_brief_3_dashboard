@@ -9,6 +9,8 @@ import CSVtoJSON from './helpers/CSVtoJSON.js';
 import ChartContainer from './helpers/ChartContainer.jsx';
 import DashBoardItem from './helpers/DashBoardItem.jsx';
 
+const analytics = window.gtag || undefined;
+
 function App() {
   // Data states.
 
@@ -97,7 +99,7 @@ function App() {
     });
   };
 
-  const changeTab = (event, tab) => {
+  const changeTab = (event, tab_class, tab_name) => {
     if (event.currentTarget.classList.contains('selected') === true) {
       closeAll();
     } else {
@@ -110,12 +112,19 @@ function App() {
         el.classList.remove('selected');
         el.classList.add('not_selected');
       });
-      document.querySelector(tab).style.opacity = 1;
-      document.querySelector(tab).style.display = 'flex';
+      document.querySelector(tab_class).style.opacity = 1;
+      document.querySelector(tab_class).style.display = 'flex';
       event.currentTarget.classList.add('selected');
-      document.querySelectorAll(`${tab} iframe`).forEach(el => {
+      document.querySelectorAll(`${tab_class} iframe`).forEach(el => {
         el.src = el.getAttribute('data-src');
       });
+      if (typeof analytics !== 'undefined') {
+        analytics('event', 'Tab Click', {
+          event_category: '2022-ukraine_brief_3_dashboard',
+          event_label: tab_name,
+          transport_type: 'beacon'
+        });
+      }
     }
   };
 
@@ -132,17 +141,17 @@ function App() {
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
           <div className="tab_container tab_container">
-            <button type="button" className="tab_button button_food" onClick={(event) => changeTab(event, '.tab_content_food')}>
+            <button type="button" className="tab_button button_food" onClick={(event) => changeTab(event, '.tab_content_food', 'Food')}>
               <span className="label label_food">Food</span>
             </button>
           </div>
           <div className="tab_container">
-            <button type="button" className="tab_button button_energy" onClick={(event) => changeTab(event, '.tab_content_energy')}>
+            <button type="button" className="tab_button button_energy" onClick={(event) => changeTab(event, '.tab_content_energy', 'Energy')}>
               <span className="label label_energy">Energy</span>
             </button>
           </div>
           <div className="tab_container">
-            <button type="button" className="tab_button button_finance" onClick={(event) => changeTab(event, '.tab_content_finance')}>
+            <button type="button" className="tab_button button_finance" onClick={(event) => changeTab(event, '.tab_content_finance', 'Finance')}>
               <span className="label label_finance">Finance</span>
             </button>
           </div>
