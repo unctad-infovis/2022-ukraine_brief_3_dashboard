@@ -11,6 +11,8 @@ import DashBoardItem from './helpers/DashBoardItem.jsx';
 
 const analytics = window.gtag || undefined;
 
+const appID = '#app-root-2022-ukraine_brief_3_dashboard';
+
 function App() {
   // Data states.
 
@@ -23,7 +25,6 @@ function App() {
   const [seriesGDPNowCast, setSeriesGDPNowCast] = useState([]);
   const [seriesTradeNowcast, setSeriesTradeNowcast] = useState([]);
   const [seriesWBFertilizerIndex, setSeriesWBFertilizerIndex] = useState([]);
-  // const [seriesWPWheatSunflower, setSeriesWPWheatSunflower] = useState([]);
   const [seriesWheatAgriculture, setSeriesWheatAgriculture] = useState([]);
 
   const cleanData = (data, type) => {
@@ -61,8 +62,7 @@ function App() {
           break;
       }
     }
-    document.querySelector('.app_content').style.opacity = 1;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    document.querySelector(`${appID} .app_content`).style.opacity = 1;
   };
 
   useEffect(() => {
@@ -83,18 +83,18 @@ function App() {
     // eslint-disable-next-line no-unused-expressions,func-names
     !(function () {
       // eslint-disable-next-line no-restricted-syntax,no-void,guard-for-in
-      window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll('iframe'); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
+      window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll(`${appID} iframe`); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
     }());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const closeAll = () => {
-    document.querySelectorAll('.tab_content').forEach(el => {
+    document.querySelectorAll(`${appID} .tab_content`).forEach(el => {
       el.style.opacity = 0;
       el.style.display = 'none';
       el.classList.remove('selected');
     });
-    document.querySelectorAll('.tab_button').forEach(el => {
+    document.querySelectorAll(`${appID} .tab_button`).forEach(el => {
       el.classList.remove('selected');
       el.classList.remove('not_selected');
     });
@@ -104,19 +104,19 @@ function App() {
     if (event.currentTarget.classList.contains('selected') === true) {
       closeAll();
     } else {
-      document.querySelectorAll('.tab_content').forEach(el => {
+      document.querySelectorAll(`${appID} .tab_content`).forEach(el => {
         el.style.opacity = 0;
         el.style.display = 'none';
         el.classList.remove('selected');
       });
-      document.querySelectorAll('.tab_button').forEach(el => {
+      document.querySelectorAll(`${appID} .tab_button`).forEach(el => {
         el.classList.remove('selected');
         el.classList.add('not_selected');
       });
-      document.querySelector(tab_class).style.opacity = 1;
-      document.querySelector(tab_class).style.display = 'flex';
+      document.querySelector(`${appID} ${tab_class}`).style.opacity = 1;
+      document.querySelector(`${appID} ${tab_class}`).style.display = 'flex';
       event.currentTarget.classList.add('selected');
-      document.querySelectorAll(`${tab_class} iframe`).forEach(el => {
+      document.querySelectorAll(`${appID} ${tab_class} iframe`).forEach(el => {
         el.src = el.getAttribute('data-src');
       });
       if (typeof analytics !== 'undefined') {
