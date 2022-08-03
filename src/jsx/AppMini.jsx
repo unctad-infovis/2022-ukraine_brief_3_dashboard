@@ -12,9 +12,9 @@ import Dashboard from './helpers/Dashboard.jsx';
 const appID = '#app-root-2022-ukraine_brief_3_dashboard_mini';
 
 function App() {
-  // Data states.
   const [narrow, setNarrow] = useState('');
 
+  // Data states.
   const [seriesBondSpread, setSeriesBondSpread] = useState([]);
   const [seriesClarkson, setSeriesClarkson] = useState([]);
   const [seriesEnergy, setSeriesEnergy] = useState([]);

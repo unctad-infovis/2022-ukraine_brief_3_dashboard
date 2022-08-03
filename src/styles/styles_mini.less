@@ -16,4 +16,30 @@
       }
     }
   }
+  &.narrow {
+    .app_content {
+      .dashboard_items {
+        .dashboard_item {
+          width: 170px;
+          box-sizing: border-box;
+          flex-wrap: nowrap;
+          flex: 50%;
+          flex-grow: 0;
+          margin-bottom: 20px;
+          padding: 0 10px;
+          .dashboard_circle {
+            background-color: transparent;
+            border-radius: 0;
+            border: 0;
+            height: auto;
+            margin: auto auto;
+            width: auto;
+          }
+          .dashboard_item_image {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }

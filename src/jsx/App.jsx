@@ -15,9 +15,6 @@ const appID = '#app-root-2022-ukraine_brief_3_dashboard';
 
 function App() {
   // Data states.
-
-  const [narrow, setNarrow] = useState('');
-
   const [seriesBondSpread, setSeriesBondSpread] = useState([]);
   const [seriesClarkson, setSeriesClarkson] = useState([]);
   const [seriesCPI, setSeriesCPI] = useState([]);
@@ -85,8 +82,6 @@ function App() {
       // eslint-disable-next-line no-restricted-syntax,no-void,guard-for-in
       window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll(`${appID} iframe`); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
     }());
-    window.addEventListener('resize', () => (document.querySelector(appID).offsetWidth > 360 ? setNarrow('narrow') : setNarrow('')));
-    return document.querySelector(`${appID} .app`).offsetWidth < 361 ? setNarrow('narrow') : setNarrow('');
   }, []);
 
   const closeAll = () => {
