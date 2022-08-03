@@ -10,6 +10,32 @@
   margin: auto auto;
   padding: 40px 0 40px 0;
   width: 100%;
+  &.narrow {
+    .app_content {
+      .dashboard_items {
+        .dashboard_item {
+          width: 170px;
+          box-sizing: border-box;
+          flex-wrap: nowrap;
+          flex: 50%;
+          flex-grow: 0;
+          margin-bottom: 20px;
+          padding: 0 10px;
+          .dashboard_circle {
+            background-color: transparent;
+            border-radius: 0;
+            border: 0;
+            height: auto;
+            margin: auto auto;
+            width: auto;
+          }
+          .dashboard_item_image {
+            display: none;
+          }
+        }
+      }
+    }
+  }
   .app_content {
     transition-duration: 0.5s;
     transition-property: opacity;
@@ -26,6 +52,7 @@
       box-sizing: border-box;
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-around;
       margin: auto auto 20px auto;
       max-width: 1350px;
       padding: 0 5px;
@@ -99,7 +126,6 @@
             font-size: 40px;
             font-weight: 700;
             text-align: center;
-           
             @media all and (max-width: 500px) {
               &.mobile {
                 display: block;

@@ -13,8 +13,8 @@ const appID = '#app-root-2022-ukraine_brief_3_dashboard_mini';
 
 function App() {
   // Data states.
+  const [narrow, setNarrow] = useState('');
 
-  // eslint-disable-next-line
   const [seriesBondSpread, setSeriesBondSpread] = useState([]);
   const [seriesClarkson, setSeriesClarkson] = useState([]);
   const [seriesEnergy, setSeriesEnergy] = useState([]);
@@ -61,11 +61,12 @@ function App() {
       // eslint-disable-next-line no-restricted-syntax,no-void,guard-for-in
       window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll(`${appID} iframe`); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
     }());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    window.addEventListener('resize', () => (document.querySelector(`${appID} .app`).offsetWidth < 361 ? setNarrow('narrow') : setNarrow('')));
+    return document.querySelector(`${appID} .app`).offsetWidth < 361 ? setNarrow('narrow') : setNarrow('');
   }, []);
 
   return (
-    <div className="app">
+    <div className={`app ${narrow}`}>
       <div className="app_content">
         <Dashboard seriesFaoFoodPriceIndex={seriesFaoFoodPriceIndex} seriesEnergy={seriesEnergy} seriesClarkson={seriesClarkson} seriesBondSpread={seriesBondSpread} appID={appID} />
         <noscript>Your browser does not support JavaScript!</noscript>
