@@ -126,7 +126,7 @@ function App() {
   };
 
   return (
-    <div className={`app ${narrow}`}>
+    <div className="app">
       <div className="app_content">
         <h1>Pulse of the global crisis</h1>
         <Dashboard seriesFaoFoodPriceIndex={seriesFaoFoodPriceIndex} seriesEnergy={seriesEnergy} seriesClarkson={seriesClarkson} seriesBondSpread={seriesBondSpread} appID={appID} />
