@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 // https://www.npmjs.com/package/react-countup
 // import CountUp from 'react-countup';
 
+// https://www.npmjs.com/package/react-is-visible
+import 'intersection-observer';
+import IsVisible from 'react-is-visible';
+
 import LineChart from './LineChart.jsx';
 
 function DashBoardItem({
-  idx, image, series, series_value_name, title, unit
+  appID, idx, image, series, series_value_name, title, unit
 }) {
   // const easingFn = (t, b, c, d) => {
   //   const ts = (t /= d) * t;
@@ -28,8 +32,18 @@ function DashBoardItem({
     <div className={`dashboard_item dashboard_item_${idx}`}>
       <div className="dashboard_circle">
         <div className="dashboard_item_image"><img src={image} alt="" /></div>
-        <div className="dashboard_item_series">{series.length > 0 && <LineChart series={series.map(el => el[series_value_name])} idx={idx} />}</div>
-        <div className="dashboard_item_value">
+        <div className="dashboard_item_value mobile">
+          <span className="value">
+            {(value > 0) ? `+${value}` : value}
+          </span>
+          <span className="unit">{unit}</span>
+        </div>
+        <IsVisible once>
+          {(isVisible) => (
+            <div className="dashboard_item_series">{(series.length > 0 && isVisible) && <LineChart appID={appID} series={series.map(el => el[series_value_name])} idx={idx} />}</div>
+          )}
+        </IsVisible>
+        <div className="dashboard_item_value desktop">
           <span className="value">
             {(value > 0) ? `+${value}` : value}
           </span>
@@ -45,6 +59,7 @@ function DashBoardItem({
 }
 
 DashBoardItem.propTypes = {
+  appID: PropTypes.string.isRequired,
   idx: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   series: PropTypes.instanceOf(Array).isRequired,

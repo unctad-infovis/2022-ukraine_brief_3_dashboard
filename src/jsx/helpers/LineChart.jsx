@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // https://d3js.org/
 import * as d3 from 'd3';
 
-function LineChart({ idx, series }) {
+function LineChart({ appID, idx, series }) {
   const chartRef = useRef(null);
 
   const xScale = d3.scaleLinear()
@@ -20,7 +20,7 @@ function LineChart({ idx, series }) {
     const line = d3.line()
       .x((d, i) => xScale(i))
       .y(d => yScale(d));
-    d3.select(`.line_${idx}`).attr('d', line(series.slice(0, current_idx)));
+    d3.select(`${appID} .line_${idx}`).attr('d', line(series.slice(0, current_idx)));
   };
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
@@ -49,6 +49,7 @@ function LineChart({ idx, series }) {
 }
 
 LineChart.propTypes = {
+  appID: PropTypes.string.isRequired,
   idx: PropTypes.string.isRequired,
   series: PropTypes.instanceOf(Array).isRequired
 };

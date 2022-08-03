@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/styles.less';
 
-// Load helpers.
+// Load
 // import FormatNr from './helpers/FormatNr.js';
 // import RoundNr from './helpers/RoundNr.js';
 
 import CSVtoJSON from './helpers/CSVtoJSON.js';
 import ChartContainer from './helpers/ChartContainer.jsx';
-import DashBoardItem from './helpers/DashBoardItem.jsx';
+import Dashboard from './helpers/Dashboard.jsx';
 
 const analytics = window.gtag || undefined;
 
@@ -62,7 +62,6 @@ function App() {
           break;
       }
     }
-    document.querySelector(`${appID} .app_content`).style.opacity = 1;
   };
 
   useEffect(() => {
@@ -133,12 +132,7 @@ function App() {
     <div className="app">
       <div className="app_content">
         <h1>Pulse of the global crisis</h1>
-        <div className="dashboard_items">
-          <DashBoardItem idx="0" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-wheat.png" series={seriesFaoFoodPriceIndex} series_value_name="value" title="Food prices" unit="%" />
-          <DashBoardItem idx="1" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-barrel.png" series={seriesEnergy} series_value_name="crude_oil_price" title="Crude Oil Price" unit="%" />
-          <DashBoardItem idx="2" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-boat.png" series={seriesClarkson} series_value_name="clarksea_index" title="Shipping prices" unit="%" />
-          <DashBoardItem idx="3" image="https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/img/icons/Ukraine_brief_3-2022-bill.png" series={seriesBondSpread} series_value_name="bond_spread_sovereign" title="Emerging markets: Sovereign bond spread" unit="%" />
-        </div>
+        <Dashboard seriesFaoFoodPriceIndex={seriesFaoFoodPriceIndex} seriesEnergy={seriesEnergy} seriesClarkson={seriesClarkson} seriesBondSpread={seriesBondSpread} appID={appID} />
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
           <div className="tab_container tab_container">

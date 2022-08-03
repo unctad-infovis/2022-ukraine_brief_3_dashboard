@@ -2,6 +2,7 @@
 
 @import 'colors.less';
 
+#app-root-2022-ukraine_brief_3_dashboard_mini .app,
 #app-root-2022-ukraine_brief_3_dashboard .app {
   background-color: #E3EDF6;
   box-sizing: border-box;
@@ -30,7 +31,7 @@
       padding: 0 5px;
       .dashboard_item {
         flex: 0 0 25%;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         width: 280px;
         @media all and (max-width: 991px) {
           flex: 50%;
@@ -78,7 +79,7 @@
             margin: auto auto 10px auto;
             width: 160px;
             @media all and (max-width: 500px) {
-              display: none;
+              // display: none;
             }
             svg {
               height: 100%;
@@ -98,6 +99,23 @@
             font-size: 40px;
             font-weight: 700;
             text-align: center;
+           
+            @media all and (max-width: 500px) {
+              &.mobile {
+                display: block;
+              }
+              &.desktop {
+                display: none;
+              }
+            }
+            @media all and (min-width: 501px) {
+              &.mobile {
+                display: none;
+              }
+              &.desktop {
+                display: block;
+              }
+            }
             .value {
               display: inline-block;
               text-align: right; 
