@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/styles.less';
 
-// Load
-// import FormatNr from './helpers/FormatNr.js';
-// import RoundNr from './helpers/RoundNr.js';
+// https://www.npmjs.com/package/scroll-into-view
+import scrollIntoView from 'scroll-into-view';
 
 import CSVtoJSON from './helpers/CSVtoJSON.js';
 import ChartContainer from './helpers/ChartContainer.jsx';
@@ -84,7 +83,7 @@ function App() {
     }());
   }, []);
 
-  const closeAll = () => {
+  const closeAll = (scroll) => {
     document.querySelectorAll(`${appID} .tab_content`).forEach(el => {
       el.style.opacity = 0;
       el.style.display = 'none';
@@ -94,11 +93,26 @@ function App() {
       el.classList.remove('selected');
       el.classList.remove('not_selected');
     });
+
+    if (scroll === true) {
+      scrollIntoView(document.querySelector(`${appID} .app`), {
+        align: {
+          left: 0,
+          leftOffset: 0,
+          lockX: false,
+          lockY: false,
+          top: 0,
+          topOffset: 100
+        },
+        cancellable: false,
+        time: 0
+      });
+    }
   };
 
   const changeTab = (event, tab_class, tab_name) => {
     if (event.currentTarget.classList.contains('selected') === true) {
-      closeAll();
+      closeAll(false);
     } else {
       document.querySelectorAll(`${appID} .tab_content`).forEach(el => {
         el.style.opacity = 0;
@@ -153,11 +167,11 @@ function App() {
             <ChartContainer title="Food prices" id="datawrapper-chart-BgxYA" src="https://datawrapper.dwcdn.net/BgxYA" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
             <ChartContainer title="Selected commodity prices" id="datawrapper-chart-13PzO" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Agriculture Index', value_name: 'agriculture_index' }, { label: 'Wheat', value_name: 'marketwatch_wheat' }]} series={seriesWheatAgriculture} />
             <ChartContainer title="Fertilizer Price" id="datawrapper-chart-Yb3xC" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'value' }]} series={seriesWBFertilizerIndex} />
-            <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
+            <div className="close_container"><button type="button" onClick={() => closeAll(true)}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">
             <ChartContainer title="Energy prices" id="datawrapper-chart-CZzPc" src="https://datawrapper.dwcdn.net/CZzPc" meta={[{ label: 'Crude oil', value_name: 'crude_oil_price' }, { label: 'Natural gas', value_name: 'natural_gas' }]} series={seriesEnergy} />
-            <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
+            <div className="close_container"><button type="button" onClick={() => closeAll(true)}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_finance">
             <ChartContainer title="GDP growth" id="datawrapper-chart-toxoa" src="https://datawrapper.dwcdn.net/toxoa" meta={[]} series={seriesGDPNowCast} />
@@ -165,7 +179,7 @@ function App() {
             <ChartContainer title="Inflation worldwide" id="datawrapper-chart-foPfw" src="https://datawrapper.dwcdn.net/foPfw" meta={[]} series={seriesCPI} />
             <ChartContainer title="Price of shipping" id="datawrapper-chart-WRywH" src="https://datawrapper.dwcdn.net/WRywH" meta={[{ label: 'ClarkSea index', value_name: 'clarksea_index' }]} series={seriesClarkson} />
             <ChartContainer title="Emerging markets: Sovereign bond spreads" id="datawrapper-chart-7TCLt" src="https://datawrapper.dwcdn.net/7TCLt" meta={[{ label: 'Corporate bond spread', value_name: 'bond_spread_corporate' }, { label: 'Sovereign  bond spread', value_name: 'bond_spread_sovereign' }]} series={seriesBondSpread} />
-            <div className="close_container"><button type="button" onClick={() => closeAll()}>Hide graphs</button></div>
+            <div className="close_container"><button type="button" onClick={() => closeAll(true)}>Hide graphs</button></div>
           </div>
         </div>
         <noscript>Your browser does not support JavaScript!</noscript>
