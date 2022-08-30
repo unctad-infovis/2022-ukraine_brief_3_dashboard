@@ -5,6 +5,7 @@
 ## Used in
 
 * [Ukraine in Focus](https://unctad.org/ukraine-in-focus)
+* [UNCTAD Twitter](https://twitter.com/UNCTAD/status/1556188691076468738)
 
 ## Rights of usage
 
