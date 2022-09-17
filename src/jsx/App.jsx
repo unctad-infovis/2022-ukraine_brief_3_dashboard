@@ -165,8 +165,8 @@ function App() {
         <div className="tabs_content">
           <div className="tab_content tab_content_food">
             <ChartContainer title="Food prices" id="datawrapper-chart-BgxYA" src="https://datawrapper.dwcdn.net/BgxYA" meta={[{ label: 'FAO Food Price Index', value_name: 'value' }]} series={seriesFaoFoodPriceIndex} />
-            <ChartContainer title="Selected commodity prices" id="datawrapper-chart-13PzO" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Agriculture Index', value_name: 'agriculture_index' }, { label: 'Wheat', value_name: 'marketwatch_wheat' }]} series={seriesWheatAgriculture} />
-            <ChartContainer title="Fertilizer Price" id="datawrapper-chart-Yb3xC" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'wp_fertilizer_index' },{ label: 'Rise', value_name: 'wp_rice' }]} series={seriesWBFertilizerIndex} />
+            <ChartContainer title="Wheat and agriculture prices" id="datawrapper-chart-13PzO" src="https://datawrapper.dwcdn.net/13PzO" meta={[{ label: 'Agriculture Index', value_name: 'agriculture_index' }, { label: 'Wheat', value_name: 'marketwatch_wheat' }]} series={seriesWheatAgriculture} />
+            <ChartContainer title="Fertilizer and Rice prices" id="datawrapper-chart-Yb3xC" src="https://datawrapper.dwcdn.net/Yb3xC" meta={[{ label: 'Fertilizer price', value_name: 'wb_fertilizer_index' }, { label: 'Rice', value_name: 'wb_rice' }]} series={seriesWBFertilizerIndex} />
             <div className="close_container"><button type="button" onClick={() => closeAll(true)}>Hide graphs</button></div>
           </div>
           <div className="tab_content tab_content_energy">

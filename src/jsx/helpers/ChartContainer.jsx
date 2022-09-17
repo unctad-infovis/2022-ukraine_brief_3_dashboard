@@ -8,7 +8,7 @@ function ChartContainer({
     meta.forEach(el => {
       const date = new Date(series[0].date);
       el.date = (`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
-      el.value = (Math.floor(((series[series.length - 1][el.value_name] - series[0][el.value_name]) / series[0][el.value_name]) * 100));
+      el.value = (Math.round(((series[series.length - 1][el.value_name] - series[0][el.value_name]) / series[0][el.value_name]) * 100));
     });
   }
 
