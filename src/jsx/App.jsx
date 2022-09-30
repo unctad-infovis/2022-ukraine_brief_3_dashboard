@@ -69,7 +69,12 @@ function App() {
       const data_file = `https://storage.unctad.org/2022-ukraine_brief_3_dashboard/assets/data/${file}`;
       try {
         fetch(data_file, { method: 'GET' })
-          .then(response => response.text())
+          .then((response) => {
+            if (!response.ok) {
+              throw Error(response.statusText);
+            }
+            return response.text();
+          })
           .then(body => cleanData(CSVtoJSON(body), file));
       } catch (error) {
         console.error(error);
