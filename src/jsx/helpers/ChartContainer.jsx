@@ -17,15 +17,18 @@ function ChartContainer({
       <iframe loading="lazy" title={title} aria-label="Interactive line chart" id={id} data-src={src} src={null} scrolling="no" frameBorder="0" height="auto" />
       <div className="growths_container">
         {series && series.length > 0 && meta.map((el) => (
-          <div key={el.label} className="growth_container">
-            <span className="growth_label">{el.label}</span>
-            <span className="growth_value">
-              {(el.value > 0) ? `+${el.value}%` : `${el.value}%`}
-            </span>
-            <span className="growth_meta">
-              {`Since ${el.date}`}
-            </span>
-          </div>
+          !Number.isNaN(el.value)
+            && (
+            <div key={el.label} className="growth_container">
+              <span className="growth_label">{el.label}</span>
+              <span className="growth_value">
+                {(el.value > 0) ? `+${el.value}%` : `${el.value}%`}
+              </span>
+              <span className="growth_meta">
+                {`Since ${el.date}`}
+              </span>
+            </div>
+            )
         ))}
       </div>
     </div>
