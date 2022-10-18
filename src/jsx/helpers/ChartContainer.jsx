@@ -40,7 +40,7 @@ ChartContainer.propTypes = {
   src: PropTypes.string.isRequired,
   meta: PropTypes.instanceOf(Array).isRequired,
   series: PropTypes.instanceOf(Array).isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 ChartContainer.defaultProps = {
