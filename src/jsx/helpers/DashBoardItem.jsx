@@ -25,7 +25,7 @@ function DashBoardItem({
   if (series && series.length > 0) {
     date = new Date(series[0].date);
     meta = (`${date.toLocaleString('en-EN', { month: 'long' })} ${date.getFullYear()}`);
-    value = (Math.floor(((series[series.length - 1][series_value_name] - series[0][series_value_name]) / series[0][series_value_name]) * 100));
+    value = Math.round(((series[series.length - 1][series_value_name] - series[0][series_value_name]) / series[0][series_value_name]) * 100, 0);
   }
 
   return (
