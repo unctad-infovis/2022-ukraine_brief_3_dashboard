@@ -86,6 +86,9 @@ function App() {
       // eslint-disable-next-line no-restricted-syntax,no-void,guard-for-in
       window.addEventListener('message', ((e) => { if (void 0 !== e.data['datawrapper-height']) { const t = document.querySelectorAll(`${appID} iframe`); for (const a in e.data['datawrapper-height']) for (let r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source)t[r].style.height = `${e.data['datawrapper-height'][a]}px`; } } }));
     }());
+    document.querySelectorAll(`${appID} .tab_content_food iframe`).forEach(el => {
+      el.src = el.getAttribute('data-src');
+    });
   }, []);
 
   const closeAll = (scroll) => {
@@ -152,17 +155,17 @@ function App() {
         <h1>Select a category to dive deeper</h1>
         <div className="tabs_container">
           <div className="tab_container tab_container">
-            <button type="button" className="tab_button button_food" onClick={(event) => changeTab(event, '.tab_content_food', 'Food')}>
+            <button type="button" className="tab_button button_food selected" onClick={(event) => changeTab(event, '.tab_content_food', 'Food')}>
               <span className="label label_food">Food</span>
             </button>
           </div>
           <div className="tab_container">
-            <button type="button" className="tab_button button_energy" onClick={(event) => changeTab(event, '.tab_content_energy', 'Energy')}>
+            <button type="button" className="tab_button button_energy not_selected" onClick={(event) => changeTab(event, '.tab_content_energy', 'Energy')}>
               <span className="label label_energy">Energy</span>
             </button>
           </div>
           <div className="tab_container">
-            <button type="button" className="tab_button button_finance" onClick={(event) => changeTab(event, '.tab_content_finance', 'Finance')}>
+            <button type="button" className="tab_button button_finance not_selected" onClick={(event) => changeTab(event, '.tab_content_finance', 'Finance')}>
               <span className="label label_finance">Finance</span>
             </button>
           </div>
