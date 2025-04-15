@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/styles.less';
 
 // https://www.npmjs.com/package/scroll-into-view
@@ -7,8 +7,6 @@ import scrollIntoView from 'scroll-into-view';
 import CSVtoJSON from './helpers/CSVtoJSON.js';
 import ChartContainer from './helpers/ChartContainer.jsx';
 import Dashboard from './helpers/Dashboard.jsx';
-
-const analytics = window.gtag || undefined;
 
 const appID = '#app-root-2022-ukraine_brief_3_dashboard';
 
@@ -118,6 +116,18 @@ function App() {
     }
   };
 
+  const analytics = window.gtag || undefined;
+  const track = useCallback((label_event = false, value_event = false) => {
+    if (typeof analytics !== 'undefined' && label_event !== false && value_event !== false) {
+      analytics('event', 'project_interaction', {
+        label: label_event,
+        project_name: '2022-ukraine_brief_3_dashboard',
+        transport_type: 'beacon',
+        value: value_event
+      });
+    }
+  }, [analytics]);
+
   const changeTab = (event, tab_class, tab_name) => {
     if (event.currentTarget.classList.contains('selected') === true) {
       closeAll(false);
@@ -137,13 +147,8 @@ function App() {
       document.querySelectorAll(`${appID} ${tab_class} iframe`).forEach(el => {
         el.src = el.getAttribute('data-src');
       });
-      if (typeof analytics !== 'undefined') {
-        analytics('event', 'Tab Click', {
-          event_category: '2022-ukraine_brief_3_dashboard',
-          event_label: tab_name,
-          transport_type: 'beacon'
-        });
-      }
+
+      track('Tab click', tab_name);
     }
   };
 
