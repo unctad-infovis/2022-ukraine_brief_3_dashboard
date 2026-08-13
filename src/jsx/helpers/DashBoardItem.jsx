@@ -68,7 +68,4 @@ DashBoardItem.propTypes = {
   unit: PropTypes.string.isRequired
 };
 
-DashBoardItem.defaultProps = {
-};
-
 export default DashBoardItem;

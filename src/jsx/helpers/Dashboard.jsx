@@ -24,7 +24,4 @@ DashBoard.propTypes = {
   seriesBondSpread: PropTypes.instanceOf(Array).isRequired
 };
 
-DashBoard.defaultProps = {
-};
-
 export default DashBoard;

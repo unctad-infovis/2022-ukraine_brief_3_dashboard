@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function SocialMediaButtons({
-  text, url, image, extra_class
+  text, url, image, extra_class = ''
 }) {
   const shareButtonClick = (event) => {
     const specs = `top=${(window.height / 2) - (420 / 2)},left=${(window.width / 2) - (550 / 2)},toolbar=0,status=0,width=550,height=420`;
@@ -27,10 +27,6 @@ SocialMediaButtons.propTypes = {
   image: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
-};
-
-SocialMediaButtons.defaultProps = {
-  extra_class: ''
 };
 
 export default SocialMediaButtons;

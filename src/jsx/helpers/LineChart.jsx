@@ -54,7 +54,4 @@ LineChart.propTypes = {
   series: PropTypes.instanceOf(Array).isRequired
 };
 
-LineChart.defaultProps = {
-};
-
 export default LineChart;
