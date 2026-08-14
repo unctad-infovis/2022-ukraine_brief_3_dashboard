@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 // https://www.npmjs.com/package/react-countup
@@ -6,13 +6,15 @@ import PropTypes from 'prop-types';
 
 // https://www.npmjs.com/package/react-is-visible
 import 'intersection-observer';
-import IsVisible from 'react-is-visible';
+import { useIsVisible } from 'react-is-visible';
 
 import LineChart from './LineChart.jsx';
 
 function DashBoardItem({
   appID, idx, image, series, series_value_name, title, unit
 }) {
+  const isVisibleRef1 = useRef();
+  const isVisible1 = useIsVisible(isVisibleRef1, { once: true });
   // const easingFn = (t, b, c, d) => {
   //   const ts = (t /= d) * t;
   //   const tc = ts * t;
@@ -38,11 +40,7 @@ function DashBoardItem({
           </span>
           <span className="unit">{unit}</span>
         </div>
-        <IsVisible once>
-          {(isVisible) => (
-            <div className="dashboard_item_series">{(series.length > 0 && isVisible) && <LineChart appID={appID} series={series.map(el => el[series_value_name])} idx={idx} />}</div>
-          )}
-        </IsVisible>
+        <div ref={isVisibleRef1} className="dashboard_item_series">{(series.length > 0 && isVisible1) && <LineChart appID={appID} series={series.map(el => el[series_value_name])} idx={idx} />}</div>
         <div className="dashboard_item_value desktop">
           <span className="value">
             {(value > 0) ? `+${value}` : value}
